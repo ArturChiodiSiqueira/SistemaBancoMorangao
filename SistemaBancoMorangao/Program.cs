@@ -28,7 +28,7 @@ namespace SistemaBancoMorangao
                 Console.Write("\n\tInforme a opcao: ");
                 opcao = Console.ReadLine();
 
-                if (opcao != "0" && opcao != "1" && opcao != "2")
+                if (opcao != "0" && opcao != "1")
                 {
                     Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Para voltar ao MENU, pressione QUALQUER TECLA!");
                     Console.ReadKey();
