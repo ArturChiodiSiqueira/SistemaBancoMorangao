@@ -6,7 +6,13 @@ namespace SistemaBancoMorangao
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            PedeDadosEndereco();
+        }
+
+        static void PedeDadosEndereco()
+        {
+            Endereco endereco = new Endereco();
+            Console.WriteLine("\n" + endereco);
         }
     }
 }
