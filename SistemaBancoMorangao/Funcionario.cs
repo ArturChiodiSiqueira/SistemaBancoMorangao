@@ -12,5 +12,18 @@ namespace SistemaBancoMorangao
         public String IdFuncionario { get; set; }
         public String Cargo { get; set; }
         public String NiveldeAcesso { get; set; }
+
+        public Funcionario()
+        {
+
+        }
+
+        public Funcionario(Pessoa pessoa, string idFuncionario, string cargo, string niveldeAcesso)
+        {
+            this.pessoa = pessoa;
+            IdFuncionario = idFuncionario;
+            Cargo = cargo;
+            NiveldeAcesso = niveldeAcesso;
+        }
     }
 }

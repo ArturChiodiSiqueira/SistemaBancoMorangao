@@ -10,5 +10,14 @@ namespace SistemaBancoMorangao
     {
         public String Saldo { get; set; }
 
+        public ContaPoupanca()
+        {
+
+        }
+
+        public ContaPoupanca(string saldo)
+        {
+            Saldo = saldo;
+        }
     }
 }

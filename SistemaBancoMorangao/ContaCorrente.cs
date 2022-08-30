@@ -17,5 +17,23 @@ namespace SistemaBancoMorangao
         public String Limite { get; set; }
         public String Cartao { get; set; }
         public String TipoConta { get; set; }
+
+        public ContaCorrente()
+        {
+
+        }
+
+        public ContaCorrente(string habilitada, Cliente cliente, Agencia agencia, string senha, string numConta, string saldo, string limite, string cartao, string tipoConta)
+        {
+            Habilitada = habilitada;
+            this.cliente = cliente;
+            this.agencia = agencia;
+            Senha = senha;
+            NumConta = numConta;
+            Saldo = saldo;
+            Limite = limite;
+            Cartao = cartao;
+            TipoConta = tipoConta;
+        }
     }
 }
