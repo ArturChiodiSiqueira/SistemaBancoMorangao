@@ -135,7 +135,7 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            PedeDadosCadastrais();
+                            CadastrarCliente();
                             break;
 
                         case "2":
@@ -146,11 +146,19 @@ namespace SistemaBancoMorangao
             } while (opcao != "0");
         }
 
-        static void PedeDadosCadastrais()
+        static void CadastrarCliente()
         {
-            Pessoa pessoa = new Pessoa();
-            Console.WriteLine("\n" + pessoa);
+            //PedeDadosCadastrais();
+            Cliente cliente = new Cliente();
+            Console.WriteLine("\n" + cliente);
             Console.ReadKey();
         }
+
+        //static void PedeDadosCadastrais()
+        //{
+        //    Pessoa pessoa = new Pessoa();
+        //    Console.WriteLine("\n" + pessoa);
+        //    Console.ReadKey();
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaBancoMorangao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace SistemaBancoMorangao
 
         public Cliente()
         {
+            pessoa = new Pessoa();
+
             Console.WriteLine("Informe a habilitacao: ");
             Habilitacao = bool.Parse(Console.ReadLine());
 
@@ -28,7 +31,6 @@ namespace SistemaBancoMorangao
             Console.WriteLine("Informe a conta: ");
             Conta = int.Parse(Console.ReadLine());
 
-            pessoa = new Pessoa();
         }
 
         //public Cliente(bool habilitacao, bool estudante, double renda, int conta, Pessoa pessoa)
@@ -42,7 +44,8 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return "hablitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
+            return pessoa.ToString() + "\nhablitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
         }
     }
 }
+
