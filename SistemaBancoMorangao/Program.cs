@@ -18,7 +18,7 @@ namespace SistemaBancoMorangao
             do
             {
                 Console.Clear();
-                Console.WriteLine("\nQUAL SEU TIPO DE ACESSO COM BASE NAS OPÇÕES?\n");
+                Console.WriteLine("\n\tQUAL SEU TIPO DE ACESSO COM BASE NAS OPÇÕES?\n");
                 Console.WriteLine("\t|°°°°°°°°°°°°°  MENU  INICIAL  °°°°°°°°°°°°°|");
                 Console.WriteLine("\t|   opção 0 : funcionario                   |");
                 Console.WriteLine("\t|                                           |");
@@ -50,7 +50,7 @@ namespace SistemaBancoMorangao
                             break;
                     }
                 }
-            } while (opcao != "0");
+            } while (opcao != "0" && opcao != "1");
         }
 
         static void MostrarMenuFuncionario()
