@@ -8,5 +8,7 @@ namespace SistemaBancoMorangao
 {
     internal class ContaPoupanca
     {
+        public String Saldo { get; set; }
+
     }
 }

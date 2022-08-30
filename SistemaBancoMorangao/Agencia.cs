@@ -8,5 +8,8 @@ namespace SistemaBancoMorangao
 {
     internal class Agencia
     {
+        public String Agencias { get; set; }
+        public String Clientes { get; set; }
+        public String Funcionarios { get; set; }
     }
 }

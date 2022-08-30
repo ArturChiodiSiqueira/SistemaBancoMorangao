@@ -28,7 +28,7 @@ namespace SistemaBancoMorangao
             Console.WriteLine("Informe a conta: ");
             Conta = int.Parse(Console.ReadLine());
 
-            //pessoa = new Pessoa();
+            pessoa = new Pessoa();
         }
 
         //public Cliente(bool habilitacao, bool estudante, double renda, int conta, Pessoa pessoa)
