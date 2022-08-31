@@ -154,7 +154,7 @@ namespace SistemaBancoMorangao
             Console.WriteLine("\n" + cliente);
             Console.ReadKey();
         }
-
+        
         //static void PedeDadosCadastrais()
         //{
         //    Pessoa pessoa = new Pessoa();

@@ -22,11 +22,11 @@ namespace SistemaBancoMorangao
             //Console.WriteLine("Informe a habilitacao: ");
             //Habilitacao = bool.Parse(Console.ReadLine());
 
-            //Console.WriteLine("Informe se é estudante: ");
-            //Estudante = bool.Parse(Console.ReadLine());
+            Console.Write("Informe se é estudante: ");
+            Estudante = bool.Parse(Console.ReadLine());
 
-            //Console.WriteLine("Informe a Renda: ");
-            //Renda = double.Parse(Console.ReadLine());
+            Console.Write("Informe sua Renda: ");
+            Renda = double.Parse(Console.ReadLine());
 
             //Console.WriteLine("Informe a conta: ");
             //Conta = int.Parse(Console.ReadLine());
@@ -44,7 +44,8 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return pessoa.ToString() + "\nhablitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
+            return pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda;
+            //return pessoa.ToString() + "\nhabilitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
         }
     }
 }
