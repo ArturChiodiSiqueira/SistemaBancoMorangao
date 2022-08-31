@@ -60,7 +60,7 @@ namespace SistemaBancoMorangao
             do
             {
                 Console.Clear();
-                Console.WriteLine("\nDENTRE AS OPÇÕES NO MENU, QUAL DESEJA EXECUTAR?\n");
+                Console.WriteLine("\nPROSSIGA COM UMA DAS OPÇÕES DO MENU.\n");
                 Console.WriteLine("\t|°°°°°°°°°°°  MENU  FUNCIONARIO  °°°°°°°°°°°|");
                 Console.WriteLine("\t|   opção 0 : sair                          |");
                 Console.WriteLine("\t|                                           |");
@@ -107,7 +107,7 @@ namespace SistemaBancoMorangao
             do
             {
                 Console.Clear();
-                Console.WriteLine("\nDENTRE AS OPÇÕES NO MENU, QUAL DESEJA EXECUTAR?\n");
+                Console.WriteLine("\nPROSSIGA COM UMA DAS OPÇÕES DO MENU.\n");
                 Console.WriteLine("\t|°°°°°°°°°°°°°  MENU  CLIENTE  °°°°°°°°°°°°°|");
                 Console.WriteLine("\t|   opção 0 : sair                          |");
                 Console.WriteLine("\t|                                           |");
