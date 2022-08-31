@@ -18,20 +18,20 @@ namespace SistemaBancoMorangao
 
         public Pessoa()
         {
-            Console.WriteLine("Informe o Nome: ");
+            Console.Write("Informe seu nome completo: ");
             Nome = Console.ReadLine();
 
-            Console.WriteLine("Informe o Telefone: ");
+            Console.Write("Informe seu telefone/celular: ");
             Telefone = Console.ReadLine();
 
-            Console.WriteLine("Informe o Email: ");
+            Console.Write("Informe seu Email: ");
             Email = Console.ReadLine();
 
-            Console.WriteLine("Informe o CPF: ");
+            Console.Write("Informe seu CPF: ");
             Cpf = Console.ReadLine();
 
-            Console.WriteLine("Informe o Genero: ");
-            Genero = char.Parse(Console.ReadLine());
+            Console.Write("Informe seu genero (M ou F): ");
+            Genero = char.Parse(Console.ReadLine().ToUpper());
 
             endereco = new Endereco();
         }

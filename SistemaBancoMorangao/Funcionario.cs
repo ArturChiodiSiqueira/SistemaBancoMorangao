@@ -15,7 +15,7 @@ namespace SistemaBancoMorangao
 
         public Funcionario()
         {
-
+            pessoa = new Pessoa();
         }
 
         public Funcionario(Pessoa pessoa, string idFuncionario, string cargo, string niveldeAcesso)

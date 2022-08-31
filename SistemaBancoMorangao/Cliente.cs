@@ -19,17 +19,17 @@ namespace SistemaBancoMorangao
         {
             pessoa = new Pessoa();
 
-            Console.WriteLine("Informe a habilitacao: ");
-            Habilitacao = bool.Parse(Console.ReadLine());
+            //Console.WriteLine("Informe a habilitacao: ");
+            //Habilitacao = bool.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe se é estudante: ");
-            Estudante = bool.Parse(Console.ReadLine());
+            //Console.WriteLine("Informe se é estudante: ");
+            //Estudante = bool.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe a Renda: ");
-            Renda = double.Parse(Console.ReadLine());
+            //Console.WriteLine("Informe a Renda: ");
+            //Renda = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe a conta: ");
-            Conta = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Informe a conta: ");
+            //Conta = int.Parse(Console.ReadLine());
 
         }
 

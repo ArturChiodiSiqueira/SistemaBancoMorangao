@@ -145,10 +145,11 @@ namespace SistemaBancoMorangao
                 }
             } while (opcao != "0");
         }
-
+        
         static void CadastrarCliente()
         {
             //PedeDadosCadastrais();
+            Console.WriteLine("VOCÊ ESTÁ PRESTES A ABRIR SUA CONTA!\nMAS ANTES NOS INFORME ALGUNS DADOS...\n\n");
             Cliente cliente = new Cliente();
             Console.WriteLine("\n" + cliente);
             Console.ReadKey();

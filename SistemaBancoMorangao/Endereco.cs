@@ -17,22 +17,22 @@ namespace SistemaBancoMorangao
 
         public Endereco()
         {
-            Console.WriteLine("Informe o Logradouro: ");
+            Console.Write("Informe seu logradouro: ");
             Logradouro = Console.ReadLine();
 
-            Console.WriteLine("Informe o Numero: ");
+            Console.Write("Informe o numero residencial: ");
             Numero = Console.ReadLine();
 
-            Console.WriteLine("Informe o Bairro: ");
+            Console.Write("Informe seu bairro: ");
             Bairro = Console.ReadLine();
 
-            Console.WriteLine("Informe a cidade: ");
+            Console.Write("Informe sua cidade: ");
             Cidade = Console.ReadLine();
 
-            Console.WriteLine("Informe o CEP: ");
+            Console.Write("Informe seu CEP: ");
             Cep = Console.ReadLine();
 
-            Console.WriteLine("Informe o Complemento: ");
+            Console.Write("Informe o complemento: ");
             Complemento = Console.ReadLine();
         }
 
