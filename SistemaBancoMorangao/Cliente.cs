@@ -25,7 +25,7 @@ namespace SistemaBancoMorangao
             Console.Write("Informe se é estudante: ");
             Estudante = bool.Parse(Console.ReadLine());
 
-            Console.Write("Informe sua Renda: ");
+            Console.Write("Informe a Renda: ");
             Renda = double.Parse(Console.ReadLine());
 
             //Console.WriteLine("Informe a conta: ");

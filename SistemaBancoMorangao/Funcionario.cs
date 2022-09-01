@@ -16,14 +16,29 @@ namespace SistemaBancoMorangao
         public Funcionario()
         {
             pessoa = new Pessoa();
+
+            Console.Write("Informe o ID do funcionário: ");
+            IdFuncionario = Console.ReadLine();
+
+            Console.Write("Informe o cargo do funcionário: ");
+            Cargo = Console.ReadLine();
+
+            Console.Write("Informe o nivel de acesso do funcionário: ");
+            NiveldeAcesso = Console.ReadLine();
         }
 
-        public Funcionario(Pessoa pessoa, string idFuncionario, string cargo, string niveldeAcesso)
+        //public Funcionario(Pessoa pessoa, string idFuncionario, string cargo, string niveldeAcesso)
+        //{
+        //    this.pessoa = pessoa;
+        //    IdFuncionario = idFuncionario;
+        //    Cargo = cargo;
+        //    NiveldeAcesso = niveldeAcesso;
+        //}
+
+        public override string ToString()
         {
-            this.pessoa = pessoa;
-            IdFuncionario = idFuncionario;
-            Cargo = cargo;
-            NiveldeAcesso = niveldeAcesso;
+            return pessoa.ToString() + "\nID do Funcionário: " + IdFuncionario + "\nCargo: " + Cargo + "\nNivel de Acesso: " + NiveldeAcesso;
+            
         }
     }
 }

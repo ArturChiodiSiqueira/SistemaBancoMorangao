@@ -17,19 +17,19 @@ namespace SistemaBancoMorangao
 
         public Endereco()
         {
-            Console.Write("Informe seu logradouro: ");
+            Console.Write("Informe o logradouro: ");
             Logradouro = Console.ReadLine();
 
             Console.Write("Informe o numero residencial: ");
             Numero = Console.ReadLine();
 
-            Console.Write("Informe seu bairro: ");
+            Console.Write("Informe o bairro: ");
             Bairro = Console.ReadLine();
 
-            Console.Write("Informe sua cidade: ");
+            Console.Write("Informe a cidade: ");
             Cidade = Console.ReadLine();
 
-            Console.Write("Informe seu CEP: ");
+            Console.Write("Informe o CEP: ");
             Cep = Console.ReadLine();
 
             Console.Write("Informe o complemento: ");
