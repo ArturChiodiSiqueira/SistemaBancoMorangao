@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace SistemaBancoMorangao
 {
-    internal class ContaPoupanca
+    internal class ContaPoupanca : ContaCorrente
     {
-        public String Saldo { get; set; }
+        public double Saldo { get; set; }
 
-        public ContaPoupanca()
+        public ContaPoupanca() : base()
         {
-
+            Saldo = 0;
         }
 
-        public ContaPoupanca(string saldo)
+        public override string ToString()
         {
-            Saldo = saldo;
+            return "\n>>>POUPANÇA<<<\nSaldo: " + Saldo.ToString("F").ToString();
         }
     }
 }

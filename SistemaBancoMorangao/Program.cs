@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SistemaBancoMorangao
 {
@@ -56,6 +57,7 @@ namespace SistemaBancoMorangao
         static void MostrarMenuFuncionario()
         {
             string opcao;
+            //string senha = "123";
 
             do
             {
@@ -104,6 +106,7 @@ namespace SistemaBancoMorangao
         static void AtividadesGerente()
         {
             string opcao;
+            //string senha = "456";
 
             do
             {
@@ -157,6 +160,7 @@ namespace SistemaBancoMorangao
         static void MostrarMenuCliente()
         {
             string opcao;
+            //string senha = senha cadastrada pelo cliente na hora de criar a conta
 
             do
             {
@@ -201,8 +205,7 @@ namespace SistemaBancoMorangao
 
         static void CadastrarCliente()
         {
-            //PedeDadosCadastrais();
-            Console.WriteLine("VOCÊ ESTÁ PRESTES A ABRIR A CONTA!\nMAS ANTES NOS INFORME ALGUNS DADOS...\n\n");
+            Console.WriteLine("VOCÊ ESTÁ PRESTES A ABRIR A CONTA!\nMAS ANTES NOS INFORME ALGUNS DADOS DO CLIENTE...\n\n");
             Cliente cliente = new Cliente();
             Console.WriteLine("\nAperte qualquer tecla para executar a solicitação!");
             Console.ReadKey();
@@ -210,12 +213,14 @@ namespace SistemaBancoMorangao
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + cliente);
             Console.WriteLine("\n\nSolicitação concluída!");
+            Console.WriteLine("Aperte qualquer tecla para voltar!");
             Console.ReadKey();
+            MostrarMenuInicial();
         }
 
         static void CadastrarFuncionario()
         {
-            Console.WriteLine("VOCÊ IRÁ CADASTRAR UM NOVO FUNCIONÁRIO!\nINFORME OS DADOS...\n\n");
+            Console.WriteLine("VOCÊ IRÁ CADASTRAR UM NOVO FUNCIONÁRIO!\nINFORME OS DADOS DO FUNCIONARIO...\n\n");
             Funcionario funcionario = new Funcionario();
             Console.WriteLine("\nAperte qualquer tecla para cadastrar!");
             Console.ReadKey();
@@ -223,16 +228,10 @@ namespace SistemaBancoMorangao
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + funcionario);
             Console.WriteLine("\n\nCadastro concluído!");
+            Console.WriteLine("Aperte qualquer tecla para voltar!");
             Console.ReadKey();
+            MostrarMenuInicial();
         }
-
-        //static void PedeDadosCadastrais()
-        //{
-        //    Pessoa pessoa = new Pessoa();
-        //    Console.WriteLine("\n" + pessoa);
-        //    Console.ReadKey(); 
-        //}
-
-
     }
 }
+

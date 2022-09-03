@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace SistemaBancoMorangao
 {
     internal class Cartao
     {
-        public String HabilitarCredito { get; set; }
+        public bool HabilitarCredito { get; set; }
         public String Senha { get; set; }
-        public String Limite { get; set; }
-        public String Saldo { get; set; }
+        public double Limite { get; set; }
+        public double Saldo { get; set; }
         public String NumDoCartao { get; set; }
         public String DataDeVencFatura { get; set; }
         public String DigVerificador { get; set; }
@@ -19,12 +20,12 @@ namespace SistemaBancoMorangao
 
         public Cartao()
         {
-
+            
         }
 
-        public Cartao(string habilitarCredito, string senha, string limite, string saldo, string numDoCartao, string dataDeVencFatura, string digVerificador, string validadeCartao)
+        public Cartao(string senha, double limite, double saldo, string numDoCartao, string dataDeVencFatura, string digVerificador, string validadeCartao)
         {
-            HabilitarCredito = habilitarCredito;
+            HabilitarCredito = false;
             Senha = senha;
             Limite = limite;
             Saldo = saldo;
@@ -32,6 +33,11 @@ namespace SistemaBancoMorangao
             DataDeVencFatura = dataDeVencFatura;
             DigVerificador = digVerificador;
             ValidadeCartao = validadeCartao;
+        }
+
+        public override string ToString()
+        {
+            return "Número do Cartão: " + NumDoCartao + "\nDigito verificador: " + DigVerificador + "\nData vencimento da fatura: " + DataDeVencFatura + "\nData de vencimento do cartão: "+ ValidadeCartao + "\nLimite: " + Limite + "\nSaldo: " + Saldo.ToString("F").ToString();
         }
     }
 }
