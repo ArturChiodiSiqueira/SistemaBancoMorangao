@@ -1,15 +1,57 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Runtime.ConstrainedExecution;
 
 namespace SistemaBancoMorangao
 {
     internal class Program
     {
+        static List<Cliente> lstClientes;
+        static List<Funcionario> lstFuncionarios;
+
+        static List<int> lstNumeroContas;
+        static List<int> lstIdFuncionarios;
+
         static void Main(string[] args)
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
+            lstClientes = new List<Cliente>();
+            lstFuncionarios = new List<Funcionario>();
+
+            lstNumeroContas = new List<int>();
+            lstIdFuncionarios = new List<int>();
+            
 
             MostrarMenuInicial();
+        }
+        static int RetornaIdFuncionario()
+        {
+            int id = 0;
+
+            foreach (int idExistente in lstIdFuncionarios)
+            {
+                if (idExistente > id)
+                {
+                    id = idExistente;
+                }
+            }
+            return id + 1;
+        }
+
+        static int RetornaNumeroConta()
+        {
+            int numeroConta = 0;
+
+            foreach (int numeroExistente in lstNumeroContas)
+            {
+                if (numeroExistente > numeroConta)
+                {
+                    numeroConta = numeroExistente;
+                }
+            }
+            return numeroConta + 1;
         }
 
         static void MostrarMenuInicial()
@@ -206,9 +248,54 @@ namespace SistemaBancoMorangao
         static void CadastrarCliente()
         {
             Console.WriteLine("VOCÊ ESTÁ PRESTES A ABRIR A CONTA!\nMAS ANTES NOS INFORME ALGUNS DADOS DO CLIENTE...\n\n");
-            Cliente cliente = new Cliente();
             Console.WriteLine("\nAperte qualquer tecla para executar a solicitação!");
             Console.ReadKey();
+
+            Console.Write("Informe o nome completo: ");
+            string nome = Console.ReadLine();
+
+            Console.Write("Informe o telefone/celular: ");
+            string telefone = Console.ReadLine();
+
+            Console.Write("Informe o Email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Informe o CPF: ");
+            string cpf = Console.ReadLine();
+
+            Console.Write("Informe o genero (M ou F): ");
+            char genero = char.Parse(Console.ReadLine().ToUpper());
+
+            Pessoa pessoa = new Pessoa(nome, telefone, email, cpf, genero);
+
+            Console.Write("Informe o logradouro: ");
+            string logradouro = Console.ReadLine();
+
+            Console.Write("Informe o numero residencial: ");
+            string numero = Console.ReadLine();
+
+            Console.Write("Informe o bairro: ");
+            string bairro = Console.ReadLine();
+
+            Console.Write("Informe a cidade: ");
+            string cidade = Console.ReadLine();
+
+            Console.Write("Informe o CEP: ");
+            string cep = Console.ReadLine();
+
+            Console.Write("Informe o complemento: ");
+            string complemento = Console.ReadLine();
+
+            pessoa.Endereco = new Endereco(logradouro, numero, bairro, cidade, cep, complemento);
+
+            Console.WriteLine("estudante? (s/n)");
+            string estudante = Console.ReadLine().ToLower();
+            Console.WriteLine("qual a renda?");
+            double renda = double.Parse(Console.ReadLine());
+
+            Cliente cliente = new Cliente(estudante == "s" ? true : false, renda, RetornaNumeroConta(), pessoa);
+
+            lstClientes.Add(cliente);
 
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + cliente);

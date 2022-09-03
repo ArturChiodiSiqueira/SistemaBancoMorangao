@@ -7,44 +7,75 @@ using System.Threading.Tasks;
 
 namespace SistemaBancoMorangao
 {
-    internal class Cliente
+    public enum TipoConta
     {
+       Estudante,
+       Normal,
+       Vip
+    }
+
+    public class Cliente
+    {
+        internal const double RENDA_MINIMA = 1200;
+
+        internal TipoConta _tipo;
+        internal double _renda;
+
+        public TipoConta Tipo {
+            get
+            {
+                return _tipo;
+            }
+        }
         public bool Habilitacao { get; set; }
+        public double Renda {
+            get
+            {
+                return _renda;
+            }
+        }
         public bool Estudante { get; set; }
-        public double Renda { get; set; }
         public int Conta { get; set; }
-        public Pessoa pessoa { get; set; }
+        public Pessoa Pessoa { get; set; }
 
         public Cliente()
         {
-            pessoa = new Pessoa();
-
-            //Console.WriteLine("Informe a habilitacao: ");
-            //Habilitacao = bool.Parse(Console.ReadLine());
-
-            Console.Write("Informe se é estudante: ");
-            Estudante = bool.Parse(Console.ReadLine());
-
-            Console.Write("Informe a Renda: ");
-            Renda = double.Parse(Console.ReadLine());
-
-            //Console.WriteLine("Informe a conta: ");
-            //Conta = int.Parse(Console.ReadLine());
+            
 
         }
 
-        //public Cliente(bool habilitacao, bool estudante, double renda, int conta, Pessoa pessoa)
-        //{
-        //    Habilitacao = habilitacao;
-        //    Estudante = estudante;
-        //    Renda = renda;
-        //    Conta = conta;
-        //    this.pessoa = pessoa;
-        //}
+        public Cliente( bool estudante, double renda, int conta, Pessoa pessoa)
+        {
+            Estudante = estudante;
+            _renda = renda;
+            Conta = conta;
+            this.Pessoa = pessoa;
+
+            AtualizaTipo();
+        }
+
+        public void AtualizaRenda(double renda)
+        {
+            _renda = renda;
+
+            AtualizaTipo();
+        }
+
+        internal void AtualizaTipo()
+        {
+            if (Renda >= RENDA_MINIMA)
+                _tipo = TipoConta.Vip;
+
+            else if (Estudante == true)
+                _tipo = TipoConta.Estudante;
+
+            else
+                _tipo = TipoConta.Normal;
+        }
 
         public override string ToString()
         {
-            return pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda;
+            return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda;
             //return pessoa.ToString() + "\nhabilitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
         }
     }

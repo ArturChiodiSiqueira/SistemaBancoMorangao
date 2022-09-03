@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaBancoMorangao
 {
-    internal class Endereco
+    public class Endereco
     {
         public String Logradouro { get; set; }
         public String Numero { get; set; }
@@ -17,34 +17,18 @@ namespace SistemaBancoMorangao
 
         public Endereco()
         {
-            Console.Write("Informe o logradouro: ");
-            Logradouro = Console.ReadLine();
-
-            Console.Write("Informe o numero residencial: ");
-            Numero = Console.ReadLine();
-
-            Console.Write("Informe o bairro: ");
-            Bairro = Console.ReadLine();
-
-            Console.Write("Informe a cidade: ");
-            Cidade = Console.ReadLine();
-
-            Console.Write("Informe o CEP: ");
-            Cep = Console.ReadLine();
-
-            Console.Write("Informe o complemento: ");
-            Complemento = Console.ReadLine();
+            
         }
 
-        //public Endereco(string logradouro, string numero, string bairro, string cidade, string cep, string complemento)
-        //{
-        //    Logradouro = logradouro;
-        //    Numero = numero;
-        //    Bairro = bairro;
-        //    Cidade = cidade;
-        //    Cep = cep;
-        //    Complemento = complemento;
-        //}
+        public Endereco(string logradouro, string numero, string bairro, string cidade, string cep, string complemento)
+        {
+            Logradouro = logradouro;
+            Numero = numero;
+            Bairro = bairro;
+            Cidade = cidade;
+            Cep = cep;
+            Complemento = complemento;
+        }
 
         public override string ToString()
         {
