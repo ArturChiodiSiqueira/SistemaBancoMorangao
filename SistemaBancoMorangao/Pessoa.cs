@@ -18,7 +18,7 @@ namespace SistemaBancoMorangao
 
         public Pessoa()
         {
-            
+
         }
 
         public Pessoa(string nome, string telefone, string email, string cpf, char genero)

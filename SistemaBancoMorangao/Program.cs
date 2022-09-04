@@ -22,10 +22,10 @@ namespace SistemaBancoMorangao
 
             lstNumeroContas = new List<int>();
             lstIdFuncionarios = new List<int>();
-            
 
             MostrarMenuInicial();
         }
+
         static int RetornaIdFuncionario()
         {
             int id = 0;
@@ -133,7 +133,19 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            //ListarClientes();
+                            foreach (Cliente cliente in lstClientes)
+                            {
+                                if (cliente != null)
+                                {
+                                    Console.WriteLine(cliente + "\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("NÃO HÁ CLIENTES CADASTRADOS AINDA.");
+                                }
+                            }
+                            Console.WriteLine("\nAperte qualquer tecla para voltar!");
+                            Console.ReadKey();
                             break;
 
                         case "2":
@@ -182,7 +194,19 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            //ListarFuncionarios();
+                            foreach (Funcionario funcionario in lstFuncionarios)
+                            {
+                                if (funcionario != null)
+                                {
+                                    Console.WriteLine(funcionario + "\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("NÃO HÁ NOVOS FUNCIONARIOS CADASTRADOS AINDA.");
+                                }
+                            }
+                            Console.WriteLine("\nAperte qualquer tecla para voltar!");
+                            Console.ReadKey();
                             break;
 
                         case "2":
@@ -308,9 +332,59 @@ namespace SistemaBancoMorangao
         static void CadastrarFuncionario()
         {
             Console.WriteLine("VOCÊ IRÁ CADASTRAR UM NOVO FUNCIONÁRIO!\nINFORME OS DADOS DO FUNCIONARIO...\n\n");
-            Funcionario funcionario = new Funcionario();
             Console.WriteLine("\nAperte qualquer tecla para cadastrar!");
             Console.ReadKey();
+
+            Console.Write("Informe o nome completo: ");
+            string nome = Console.ReadLine();
+
+            Console.Write("Informe o telefone/celular: ");
+            string telefone = Console.ReadLine();
+
+            Console.Write("Informe o Email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Informe o CPF: ");
+            string cpf = Console.ReadLine();
+
+            Console.Write("Informe o genero (M ou F): ");
+            char genero = char.Parse(Console.ReadLine().ToUpper());
+
+            Pessoa pessoa = new Pessoa(nome, telefone, email, cpf, genero);
+
+            Console.Write("Informe o logradouro: ");
+            string logradouro = Console.ReadLine();
+
+            Console.Write("Informe o numero residencial: ");
+            string numero = Console.ReadLine();
+
+            Console.Write("Informe o bairro: ");
+            string bairro = Console.ReadLine();
+
+            Console.Write("Informe a cidade: ");
+            string cidade = Console.ReadLine();
+
+            Console.Write("Informe o CEP: ");
+            string cep = Console.ReadLine();
+
+            Console.Write("Informe o complemento: ");
+            string complemento = Console.ReadLine();
+
+            pessoa.Endereco = new Endereco(logradouro, numero, bairro, cidade, cep, complemento);
+
+            string cargo;
+
+            Console.Write("Informe o nivel de acesso do funcionário (1 - funcionario | 2 - gerente): ");
+            int niveldeAcesso = int.Parse(Console.ReadLine());
+
+            if (niveldeAcesso == 1)
+                cargo = "FUNCIONARIO";
+            else
+                cargo = "GERENTE";
+
+            Funcionario funcionario = new Funcionario(pessoa, RetornaIdFuncionario(), cargo, niveldeAcesso == 1 ? 1 : 2);
+
+            lstFuncionarios.Add(funcionario);
 
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + funcionario);
@@ -319,6 +393,10 @@ namespace SistemaBancoMorangao
             Console.ReadKey();
             MostrarMenuInicial();
         }
+
+        //static void ColetaDados()
+        //{
+
+        //}
     }
 }
-

@@ -9,26 +9,28 @@ namespace SistemaBancoMorangao
 {
     public enum TipoConta
     {
-       Estudante,
-       Normal,
-       Vip
+        Estudante,
+        Normal,
+        Vip
     }
 
     public class Cliente
     {
-        internal const double RENDA_MINIMA = 1200;
+        internal const double RENDA_MINIMA = 5000;
 
         internal TipoConta _tipo;
         internal double _renda;
 
-        public TipoConta Tipo {
+        public TipoConta Tipo
+        {
             get
             {
                 return _tipo;
             }
         }
         public bool Habilitacao { get; set; }
-        public double Renda {
+        public double Renda
+        {
             get
             {
                 return _renda;
@@ -40,11 +42,10 @@ namespace SistemaBancoMorangao
 
         public Cliente()
         {
-            
 
         }
 
-        public Cliente( bool estudante, double renda, int conta, Pessoa pessoa)
+        public Cliente(bool estudante, double renda, int conta, Pessoa pessoa)
         {
             Estudante = estudante;
             _renda = renda;
@@ -75,7 +76,7 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda;
+            return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
             //return pessoa.ToString() + "\nhabilitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
         }
     }
