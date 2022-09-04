@@ -218,10 +218,63 @@ namespace SistemaBancoMorangao
             } while (opcao != "0");
         }
 
+        // fazer uma outra lista para guardar as contas aprovadas, essa ss sera a lista de clientes
         static void VerAprovacoes()
         {
+            string opcao;
+            do
+            {
+                Console.WriteLine("         TIPOS DE APROVAÇÕES");
+                Console.WriteLine("(1 - Abertura de Conta | 2 - Emprétimo)");
+                Console.Write("\nEscolha o Tipo deAprovação: ");
+                opcao = Console.ReadLine();
 
+                switch (opcao)
+                {
+                    case "1":
+                        AprovarAberturaDeConta();
+                        break;
+
+                    case "2":
+                        AprovarEmprestimo();
+                        break;
+                }
+            } while (opcao != "1" && opcao != "2");
         }
+
+        static void AprovarAberturaDeConta()
+        {
+            Console.Clear();
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine("LISTA DE CONTAS A SEREM APROVADAS!");
+            Console.WriteLine("----------------------------------");
+
+            foreach (Cliente cliente in lstClientes)
+            {
+                if (cliente != null)
+                {
+                    Console.WriteLine("\n" + cliente + "\n");
+                }
+                else
+                {
+                    Console.WriteLine("NÃO HÁ CLIENTES CADASTRADOS AINDA.");
+                }
+            }
+            Console.WriteLine("\nAperte qualquer tecla para voltar!");
+
+            Console.ReadKey();
+        }
+
+        static void AprovarEmprestimo()
+        {
+            Console.Clear();
+            Console.WriteLine("---------------------------------------");
+            Console.WriteLine("LISTA DE EMPRESTIMOS A SEREM APROVADOS!");
+            Console.WriteLine("---------------------------------------");
+
+            Console.ReadKey();
+        }
+
 
         static void MostrarMenuCliente()
         {
@@ -257,7 +310,11 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
+                            Console.WriteLine("Para prosseguir nos informe o numero da conta e a senha.");
+                            //se a conta existir e a senha estiver correta chama as atividades do cliente
+                            // seja bem vindo fulano, o que gostaria de fazer?...
                             AtividadesCliente();
+                            //se nao informar que nao existe e mostrar novamente MostrarMenuCliente();
                             break;
                     }
                 }
@@ -266,8 +323,77 @@ namespace SistemaBancoMorangao
 
         static void AtividadesCliente()
         {
+            string opcao;
 
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES BANCÁRIAS  $$$$$$$$$$$$$$$");
+                Console.WriteLine("\t$$                                                 $$");
+                Console.WriteLine("\t$$    opção 0 : MENU CLIENTE                       $$");
+                Console.WriteLine("\t$$                                                 $$");
+                Console.WriteLine("\t$$    opção 1 : depositar                          $$");
+                Console.WriteLine("\t$$    opção 2 : sacar                              $$");
+                Console.WriteLine("\t$$    opção 3 : transferir                         $$");
+                Console.WriteLine("\t$$                                                 $$");
+                Console.WriteLine("\t$$    opção 4 : extrato                            $$");
+                Console.WriteLine("\t$$    opção 5 : saldo                              $$");
+                Console.WriteLine("\t$$                                                 $$");
+                Console.WriteLine("\t$$    opção 6 : realizar pagamento                 $$");
+                Console.WriteLine("\t$$    opção 7 : solicitar emprestimo               $$");
+                Console.WriteLine("\t$$                                                 $$");
+                Console.WriteLine("\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+                Console.Write("\n\tInforme a opcao: ");
+                opcao = Console.ReadLine();
+
+                if (opcao != "0" && opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao != "6" && opcao != "7")
+                {
+                    Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Para voltar ao MENU, pressione QUALQUER TECLA!");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+
+                else
+                {
+                    switch (opcao)
+                    {
+                        case "0":
+                            MostrarMenuCliente();
+                            break;
+                        case "1":
+                            Console.Clear();
+                            
+                            break;
+                        case "2":
+                            Console.Clear();
+
+                            break;
+                        case "3":
+                            Console.Clear();
+
+                            break;
+                        case "4":
+                            Console.Clear();
+
+                            break;
+                        case "5":
+                            Console.Clear();
+
+                            break;
+                        case "6":
+                            Console.Clear();
+
+                            break;
+                        case "7":
+                            Console.Clear();
+
+                            break;
+                    }
+                }
+            } while (opcao != "0");
         }
+    
 
         static void CadastrarCliente()
         {
@@ -312,12 +438,12 @@ namespace SistemaBancoMorangao
 
             pessoa.Endereco = new Endereco(logradouro, numero, bairro, cidade, cep, complemento);
 
-            Console.WriteLine("estudante? (s/n)");
-            string estudante = Console.ReadLine().ToLower();
+            Console.WriteLine("estudante? (S/N)");
+            string estudante = Console.ReadLine().ToUpper();
             Console.WriteLine("qual a renda?");
             double renda = double.Parse(Console.ReadLine());
 
-            Cliente cliente = new Cliente(estudante == "s" ? true : false, renda, RetornaNumeroConta(), pessoa);
+            Cliente cliente = new Cliente(estudante == "S" ? true : false, renda, RetornaNumeroConta(), pessoa);
 
             lstClientes.Add(cliente);
 
