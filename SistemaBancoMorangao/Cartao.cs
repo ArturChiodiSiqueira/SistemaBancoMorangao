@@ -37,7 +37,7 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return "Número do Cartão: " + NumDoCartao + "\nDigito verificador: " + DigVerificador + "\nData vencimento da fatura: " + DataDeVencFatura + "\nData de vencimento do cartão: "+ ValidadeCartao + "\nLimite: " + Limite + "\nSaldo: " + Saldo.ToString("F").ToString();
+            return "Número do Cartão: " + NumDoCartao + "\nDigito verificador: " + DigVerificador + "\nData vencimento da fatura: " + DataDeVencFatura + "\nData de vencimento do cartão: "+ ValidadeCartao + "\nLimite: " + Limite + "\nSaldo: " + Saldo.ToString("F2").ToString();
         }
     }
 }
