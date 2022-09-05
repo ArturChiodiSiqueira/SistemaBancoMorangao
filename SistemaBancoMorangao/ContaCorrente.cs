@@ -8,7 +8,7 @@ namespace SistemaBancoMorangao
 {
     internal class ContaCorrente
     {
-        public String Habilitada { get; set; }
+        public bool Habilitada { get; set; }
         public Cliente cliente { get; set; }
         public Agencia agencia { get; set; }
         public String Senha { get; set; }
@@ -23,9 +23,9 @@ namespace SistemaBancoMorangao
 
         }
 
-        public ContaCorrente(string habilitada, Cliente cliente, Agencia agencia, string senha, string numConta, string saldo, string limite, string cartao, string tipoConta)
+        public ContaCorrente(Cliente cliente, Agencia agencia, string senha, string numConta, string saldo, string limite, string cartao, string tipoConta)
         {
-            Habilitada = habilitada;
+            this.Habilitada = false;
             this.cliente = cliente;
             this.agencia = agencia;
             Senha = senha;

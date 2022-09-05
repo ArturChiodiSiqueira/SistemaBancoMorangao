@@ -14,12 +14,33 @@ namespace SistemaBancoMorangao
         Vip
     }
 
+    public enum Status
+    {
+        Pendente,
+        Aprovado,
+        Cancelado
+    }
+
     public class Cliente
     {
         internal const double RENDA_MINIMA = 5000;
 
         internal TipoConta _tipo;
         internal double _renda;
+        internal Status _status;
+
+        //public Status Status
+        //{
+        //    set
+        //    {
+        //        _status = Status.Aprovado;
+        //    }
+        //}
+
+        public void AtualizaStatus()
+        {
+            _status = Status.Aprovado;
+        }
 
         public TipoConta Tipo
         {
