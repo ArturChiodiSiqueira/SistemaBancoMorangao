@@ -399,11 +399,30 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            Console.WriteLine("Para prosseguir nos informe o numero da conta e a senha.");
-                            //se a conta existir e a senha estiver correta chama as atividades do cliente
-                            // seja bem vindo fulano, o que gostaria de fazer?...
-                            AtividadesCliente();
-                            //se nao informar que nao existe e mostrar novamente MostrarMenuCliente();
+                            Console.WriteLine("Para prosseguir nos informe o numero da conta, a agencia e a senha.");
+
+                            Console.WriteLine("Informe o numero da conta: ");
+                            string numeroInformado = Console.ReadLine();
+
+                            Console.WriteLine("Informe o numero da agencia: ");
+                            int agenciaInformada = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Informe s senha: ");
+                            string senhaInformada = Console.ReadLine();
+
+                            Cliente clienteBuscado = BuscarCliente(numeroInformado, agenciaInformada, senhaInformada);
+
+                            if (clienteBuscado != null)
+                            {
+                                //Console.WriteLine(clienteBuscado);
+                                //Console.ReadKey();
+                                AtividadesCliente(clienteBuscado);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Alguma das informações é inválida!");
+                            }
+                            
                             break;
 
                         case "2":
@@ -415,7 +434,20 @@ namespace SistemaBancoMorangao
             } while (opcao != "0");
         }
 
-        static void AtividadesCliente()
+        static Cliente BuscarCliente (string numeroInformado, int agenciaInformada, string senhaInformada)
+        {
+            //Cliente cliente;
+            foreach (Cliente cliente in lstClientesAprovados)
+            {
+                if ((cliente != null) && (cliente.Conta.NumConta == numeroInformado) && (cliente.Conta.agencia == agenciaInformada) && (cliente.Conta.Senha == senhaInformada)) 
+                {
+                    return cliente;
+                }
+            }
+            return null;
+        }
+
+        static void AtividadesCliente(Cliente clienteBuscado)
         {
             string opcao;
 
@@ -553,7 +585,7 @@ namespace SistemaBancoMorangao
             Console.WriteLine("Informe a senha: ");
             string senha = Console.ReadLine();
 
-            Console.WriteLine("Numero da conta: ");
+            //Console.WriteLine("Numero da conta: ");
             int numeroConta = RetornaNumeroConta();
 
             Console.WriteLine("Informe o numero da agencia: ");
