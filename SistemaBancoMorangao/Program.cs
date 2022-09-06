@@ -399,15 +399,15 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            Console.WriteLine("Para prosseguir nos informe o numero da conta, a agencia e a senha.");
+                            Console.WriteLine("PARA PROSSEGUIR NOS INFORME O NUMERO DA CONTA, A AGENCIA E A SENHA DO CLIENTE.");
 
-                            Console.WriteLine("Informe o numero da conta: ");
+                            Console.Write("\nInforme o numero da conta: ");
                             string numeroInformado = Console.ReadLine();
 
-                            Console.WriteLine("Informe o numero da agencia: ");
+                            Console.Write("Informe o numero da agencia: ");
                             int agenciaInformada = int.Parse(Console.ReadLine());
 
-                            Console.WriteLine("Informe s senha: ");
+                            Console.Write("Informe a senha: ");
                             string senhaInformada = Console.ReadLine();
 
                             Cliente clienteBuscado = BuscarCliente(numeroInformado, agenciaInformada, senhaInformada);
@@ -419,10 +419,8 @@ namespace SistemaBancoMorangao
                                 AtividadesCliente(clienteBuscado);
                             }
                             else
-                            {
                                 Console.WriteLine("Alguma das informações é inválida!");
-                            }
-                            
+                            Console.ReadKey();
                             break;
 
                         case "2":
@@ -436,7 +434,6 @@ namespace SistemaBancoMorangao
 
         static Cliente BuscarCliente (string numeroInformado, int agenciaInformada, string senhaInformada)
         {
-            //Cliente cliente;
             foreach (Cliente cliente in lstClientesAprovados)
             {
                 if ((cliente != null) && (cliente.Conta.NumConta == numeroInformado) && (cliente.Conta.agencia == agenciaInformada) && (cliente.Conta.Senha == senhaInformada)) 
@@ -454,21 +451,22 @@ namespace SistemaBancoMorangao
             do
             {
                 Console.Clear();
-                Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES BANCÁRIAS  $$$$$$$$$$$$$$$");
-                Console.WriteLine("\t$$                                                 $$");
-                Console.WriteLine("\t$$    opção 0 : MENU CLIENTE                       $$");
-                Console.WriteLine("\t$$                                                 $$");
-                Console.WriteLine("\t$$    opção 1 : depositar                          $$");
-                Console.WriteLine("\t$$    opção 2 : sacar                              $$");
-                Console.WriteLine("\t$$    opção 3 : transferir                         $$");
-                Console.WriteLine("\t$$                                                 $$");
-                Console.WriteLine("\t$$    opção 4 : extrato                            $$");
-                Console.WriteLine("\t$$    opção 5 : saldo                              $$");
-                Console.WriteLine("\t$$                                                 $$");
-                Console.WriteLine("\t$$    opção 6 : realizar pagamento                 $$");
-                Console.WriteLine("\t$$    opção 7 : solicitar emprestimo               $$");
-                Console.WriteLine("\t$$                                                 $$");
-                Console.WriteLine("\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                Console.WriteLine("\tBEM VINDO " + clienteBuscado.Pessoa.Nome + "! Este é seu menu de operações financeiras!!\n");
+                Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES FINANCEIRAS  $$$$$$$$$$$$$$$");
+                Console.WriteLine("\t$$                                                   $$");
+                Console.WriteLine("\t$$    opção 0 : MENU CLIENTE                         $$");
+                Console.WriteLine("\t$$                                                   $$");
+                Console.WriteLine("\t$$    opção 1 : depositar                            $$");
+                Console.WriteLine("\t$$    opção 2 : sacar                                $$");
+                Console.WriteLine("\t$$    opção 3 : transferir                           $$");
+                Console.WriteLine("\t$$                                                   $$");
+                Console.WriteLine("\t$$    opção 4 : extrato                              $$");
+                Console.WriteLine("\t$$    opção 5 : saldo                                $$");
+                Console.WriteLine("\t$$                                                   $$");
+                Console.WriteLine("\t$$    opção 6 : realizar pagamento                   $$");
+                Console.WriteLine("\t$$    opção 7 : solicitar emprestimo                 $$");
+                Console.WriteLine("\t$$                                                   $$");
+                Console.WriteLine("\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
                 Console.Write("\n\tInforme a opcao: ");
                 opcao = Console.ReadLine();
