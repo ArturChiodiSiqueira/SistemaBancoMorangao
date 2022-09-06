@@ -486,36 +486,77 @@ namespace SistemaBancoMorangao
                             MostrarMenuCliente();
                             break;
                         case "1":
-                            Console.Clear();
-
+                            RealizarDeposito(clienteBuscado);
                             break;
+
                         case "2":
-                            Console.Clear();
-
+                            RealizarSaque(clienteBuscado);
                             break;
+
                         case "3":
                             Console.Clear();
-
+                            //Transferir();
                             break;
+
                         case "4":
                             Console.Clear();
-
+                            //ConsultarExtrato();
                             break;
+
                         case "5":
                             Console.Clear();
-
+                            //ConsultarSaldo();
                             break;
+
                         case "6":
                             Console.Clear();
-
+                            //RealizarPagamento();
                             break;
+
                         case "7":
                             Console.Clear();
-
+                            //SolicitarEmprestimo();
                             break;
                     }
                 }
             } while (opcao != "0");
+        }
+
+        static void RealizarDeposito(Cliente clienteBuscado)
+        {
+            Console.WriteLine("\n\n$$$-DEPOSITAR-$$$");
+
+            Console.Write("Saldo atual: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.ReadKey();
+
+            Console.Write("\nInforme o valor que irá depositar R$ ");
+            double valor = double.Parse(Console.ReadLine());
+
+            clienteBuscado.Conta.DepositarValor("CC", "deposito", valor);
+
+            Console.Write("Novo saldo: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.ReadKey();
+        }
+
+        static void RealizarSaque(Cliente clienteBuscado)
+        {
+            Console.WriteLine("\n\n$$$-SACAR-$$$");
+
+            Console.Write("Saldo atual: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.ReadKey();
+
+            Console.Write("\nInforme o valor que irá sacar R$ ");
+            double valor = double.Parse(Console.ReadLine());
+
+            clienteBuscado.Conta.SacarValor("CC", "saque", valor);
+
+            Console.Write("Novo saldo: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
+
+            Console.ReadKey();
         }
 
         static void CadastrarCliente()
@@ -533,11 +574,19 @@ namespace SistemaBancoMorangao
             Console.Write("Informe o Email: ");
             string email = Console.ReadLine();
 
-            Console.Write("Informe o CPF: ");
-            string cpf = Console.ReadLine();
+            string cpf;
+            do
+            {
+                Console.Write("Informe o CPF (11 digitos): ");
+                cpf = Console.ReadLine();
+            } while (cpf.Length != 11);
 
-            Console.Write("Informe o genero (M ou F): ");
-            char genero = char.Parse(Console.ReadLine().ToUpper());
+            char genero;
+            do
+            {
+                Console.Write("Informe o genero (M ou F): ");
+                genero = char.Parse(Console.ReadLine().ToUpper());
+            } while (genero != 'M' && genero != 'F');
 
             Pessoa pessoa = new Pessoa(nome, telefone, email, cpf, genero);
 
@@ -580,16 +629,16 @@ namespace SistemaBancoMorangao
 
         static ContaCorrente CadastrarConta(Cliente cliente)
         {
-            Console.WriteLine("Informe a senha: ");
+            Console.Write("\nInforme a SENHA: ");
             string senha = Console.ReadLine();
 
             //Console.WriteLine("Numero da conta: ");
             int numeroConta = RetornaNumeroConta();
 
-            Console.WriteLine("Informe o numero da agencia: ");
+            Console.Write("Informe o numero da AGENCIA: ");
             int agencia = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Terá deposito inicial?");
+            Console.Write("\nCaso NÃO tenha depósito inicial digite 0, caso TENHA digite o valor: ");
             double saldo = double.Parse(Console.ReadLine());
 
             return new ContaCorrente(cliente, agencia, senha, numeroConta.ToString(), saldo);
