@@ -12,14 +12,14 @@ namespace SistemaBancoMorangao
         public double Saldo { get; set; }
         public double Limite { get; set; }
         public Cartao Cartao { get; set; }
-        public String TipoConta { get; set; }
+        public TipoConta TipoConta { get; set; }
 
         public ContaCorrente()
         {
 
         }
 
-        public ContaCorrente(Cliente cliente, int agencia, string senha, string numConta, double saldo, double limite, string tipoConta)
+        public ContaCorrente(Cliente cliente, int agencia, string senha, string numConta, double saldo)
         {
             this.Habilitada = false;
             this.cliente = cliente;
@@ -27,10 +27,11 @@ namespace SistemaBancoMorangao
             Senha = senha;
             NumConta = numConta;
             Saldo = saldo;
-            Limite = CalcularLimite(cliente.Renda);
-            Cartao = new Cartao(senha, limite, saldo, numConta);
-            TipoConta = tipoConta;
+            Limite = CalcularLimite(cliente._renda);
+            Cartao = new Cartao(senha, Limite, saldo, numConta);
+            TipoConta = cliente._tipo;
         }
+
 
         static double CalcularLimite(double renda)
         {

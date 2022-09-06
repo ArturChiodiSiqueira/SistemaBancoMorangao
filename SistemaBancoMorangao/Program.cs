@@ -535,8 +535,8 @@ namespace SistemaBancoMorangao
             string estudante = Console.ReadLine().ToUpper();
             Console.Write("qual a renda? ");
             double renda = double.Parse(Console.ReadLine());
-            ContaCorrente conta = CadastrarConta();
-            Cliente cliente = new Cliente(estudante == "S" ? true : false, renda, RetornaNumeroConta(), pessoa);
+            Cliente cliente = new Cliente(estudante == "S" ? true : false, renda, pessoa);
+            cliente.Conta = CadastrarConta(cliente);
 
             lstClientesPendentes.Add(cliente);
 
@@ -548,7 +548,7 @@ namespace SistemaBancoMorangao
             MostrarMenuInicial();
         }
 
-        static ContaCorrente CadastrarConta()
+        static ContaCorrente CadastrarConta(Cliente cliente)
         {
             Console.WriteLine("Informe a senha: ");
             string senha = Console.ReadLine();
@@ -559,7 +559,10 @@ namespace SistemaBancoMorangao
             Console.WriteLine("Informe o numero da agencia: ");
             int agencia = int.Parse(Console.ReadLine());
 
-            return new ContaCorrente();
+            Console.WriteLine("Terá deposito inicial?");
+            double saldo = double.Parse(Console.ReadLine());
+
+            return new ContaCorrente(cliente, agencia, senha, numeroConta.ToString(), saldo);
         }
 
         static void CadastrarFuncionario()
