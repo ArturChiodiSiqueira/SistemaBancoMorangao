@@ -1,9 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SistemaBancoMorangao
 {
