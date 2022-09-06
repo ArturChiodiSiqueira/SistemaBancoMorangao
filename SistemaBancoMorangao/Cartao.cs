@@ -11,23 +11,23 @@ namespace SistemaBancoMorangao
         public String NumDoCartao { get; set; }
         public String DataDeVencFatura { get; set; }
         public String DigVerificador { get; set; }
-        public String ValidadeCartao { get; set; }
+        public DateTime ValidadeCartao { get; set; }
 
         public Cartao()
         {
             
         }
 
-        public Cartao(string senha, double limite, double saldo, string numDoCartao, string dataDeVencFatura, string digVerificador, string validadeCartao)
+        public Cartao(string senha, double limite, double saldo, string numDoCartao)
         {
             HabilitarCredito = false;
             Senha = senha;
             Limite = limite;
             Saldo = saldo;
             NumDoCartao = numDoCartao;
-            DataDeVencFatura = dataDeVencFatura;
-            DigVerificador = digVerificador;
-            ValidadeCartao = validadeCartao;
+            DataDeVencFatura = "7";
+            DigVerificador = "8";
+            ValidadeCartao = DateTime.Now;
         }
 
         public override string ToString()

@@ -16,11 +16,6 @@
 
     public class Cliente
     {
-        internal const double RENDA_MINIMA = 5000;
-
-        internal TipoConta _tipo;
-        internal double _renda;
-        internal Status _status;
 
         //public Status Status
         //{
@@ -42,7 +37,6 @@
                 return _tipo;
             }
         }
-        public bool Habilitacao { get; set; }
         public double Renda
         {
             get
@@ -50,8 +44,16 @@
                 return _renda;
             }
         }
+        
+        internal const double RENDA_MINIMA = 5000;
+
+        internal TipoConta _tipo;
+        internal protected double _renda;
+        internal Status _status;
+
+        public bool Habilitacao { get; set; }
         public bool Estudante { get; set; }
-        public int Conta { get; set; }
+        public ContaCorrente Conta { get; set; }
         public Pessoa Pessoa { get; set; }
 
         public Cliente()
@@ -59,11 +61,11 @@
 
         }
 
-        public Cliente(bool estudante, double renda, int conta, Pessoa pessoa)
+        public Cliente(bool estudante, double renda, ContaCorrente conta, Pessoa pessoa)
         {
             Estudante = estudante;
             _renda = renda;
-            Conta = conta;
+            this.Conta = conta;
             this.Pessoa = pessoa;
 
             AtualizaTipo();
