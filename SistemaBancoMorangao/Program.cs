@@ -275,36 +275,33 @@ namespace SistemaBancoMorangao
             Console.WriteLine("LISTA DE CONTAS A SEREM APROVADAS!");
             Console.WriteLine("----------------------------------");
 
-            foreach (Cliente cliente in lstClientesPendentes)
+            for (int i = 0; i < lstClientesPendentes.Count; i++)
             {
-                if (cliente != null)
+                Cliente cliente = lstClientesPendentes[i];
+
+                Console.WriteLine("\n" + cliente + "\n");
+
+                string opcao;
+                Console.WriteLine("deseja aprovar este cliente (1 - sim | 2 - não)");
+                opcao = Console.ReadLine();
+
+                if (opcao == "1")
                 {
-                    Console.WriteLine("\n" + cliente + "\n");
+                    cliente.AtualizaStatus();
+                    Console.WriteLine("APROVADO.");
 
-                    //Console.Write("\n\nInforme o numero da conta do cliente que deseja aprovar: ");
-                    //int numeroInformado = int.Parse(Console.ReadLine());
+                    lstClientesAprovados.Add(cliente);
 
-                    string opcao;
-                    Console.WriteLine("deseja aprovar este cliente (1 - sim | 2 - não)");
-                    Console.Write("Escolha a opcao: ");
-                    opcao = Console.ReadLine();
+                    lstClientesPendentes.Remove(cliente);
 
-                    if (opcao == "1")
-                    {
-                        cliente.AtualizaStatus();
-                        Console.WriteLine("APROVADO.");
+                    i -= 1;
+                }
 
-                        lstClientesAprovados.Add(cliente);
+                else
+                {
+                    Console.WriteLine("NÃO APROVADO.");
 
-                        Cliente clienteAux = cliente;
-
-                        lstClientesPendentes.Remove(clienteAux);
-                    }
-                    else
-                    {
-                        Console.WriteLine("NÃO APROVADO.");
-
-                    }
+                    lstClientesPendentes.Remove(cliente);
                 }
             }
 
@@ -369,7 +366,6 @@ namespace SistemaBancoMorangao
 
             Console.ReadKey();
         }
-
 
         static void MostrarMenuCliente()
         {
@@ -539,9 +535,9 @@ namespace SistemaBancoMorangao
 
             pessoa.Endereco = new Endereco(logradouro, numero, bairro, cidade, cep, complemento);
 
-            Console.WriteLine("estudante? (S/N)");
+            Console.Write("estudante? (S/N) ");
             string estudante = Console.ReadLine().ToUpper();
-            Console.WriteLine("qual a renda?");
+            Console.Write("qual a renda? ");
             double renda = double.Parse(Console.ReadLine());
 
             Cliente cliente = new Cliente(estudante == "S" ? true : false, renda, RetornaNumeroConta(), pessoa);
