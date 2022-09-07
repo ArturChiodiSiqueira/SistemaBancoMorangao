@@ -469,8 +469,7 @@ namespace SistemaBancoMorangao
                             break;
 
                         case "6":
-                            Console.Clear();
-                            //RealizarPagamento();
+                            RealizarPagamento(clienteBuscado);
                             break;
 
                         case "7":
@@ -525,6 +524,25 @@ namespace SistemaBancoMorangao
 
             Console.Write("Saldo atual: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.ReadKey();
+        }
+
+        static void RealizarPagamento(Cliente clienteBuscado)
+        {
+            Console.WriteLine("\n\n$$$-PAGAR-$$$");
+
+            //Console.Write("Saldo atual: ");
+            //Console.WriteLine(clienteBuscado.Conta.Saldo);
+            //Console.ReadKey();
+
+            Console.Write("\nInforme o valor do pagamento R$ ");
+            double valor = double.Parse(Console.ReadLine());
+
+            clienteBuscado.Conta.SacarValor("CC", "pagamento", valor);
+
+            Console.Write("Novo saldo: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
+
             Console.ReadKey();
         }
 
