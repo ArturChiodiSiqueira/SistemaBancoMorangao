@@ -9,7 +9,7 @@ namespace SistemaBancoMorangao
         static void Main(string[] args)
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
-
+            //Projeto funcionando
             MostrarMenuInicial();
         }
 
