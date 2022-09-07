@@ -28,7 +28,7 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return "Logradouro: " + Logradouro + "\nNumero: " + Numero + "\nBairro: " + Bairro + "\nCidade: " + Cidade + "\nCep: " + Cep + "\nComplemento: " + Complemento;
+            return "\nLogradouro: " + Logradouro + "\nNumero: " + Numero + "\nBairro: " + Bairro + "\nCidade: " + Cidade + "\nCep: " + Cep + "\nComplemento: " + Complemento;
         }
     }
 }
