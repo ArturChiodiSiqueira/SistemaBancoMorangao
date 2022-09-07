@@ -644,8 +644,11 @@ namespace SistemaBancoMorangao
             Console.ReadKey();
 
             Console.Write("Informe o nome completo: ");
-            string nome = Console.ReadLine();
+            string nome = Console.ReadLine().Trim();
+            //if (nome == "")
+            //{
 
+            //}
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();
 
