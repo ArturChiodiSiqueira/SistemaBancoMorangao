@@ -465,8 +465,7 @@ namespace SistemaBancoMorangao
                             break;
 
                         case "5":
-                            Console.Clear();
-                            //ConsultarSaldo();
+                            RealizarConsultaSaldo(clienteBuscado);
                             break;
 
                         case "6":
@@ -487,9 +486,9 @@ namespace SistemaBancoMorangao
         {
             Console.WriteLine("\n\n$$$-DEPOSITAR-$$$");
 
-            Console.Write("Saldo atual: ");
-            Console.WriteLine(clienteBuscado.Conta.Saldo);
-            Console.ReadKey();
+            //Console.Write("Saldo atual: ");
+            //Console.WriteLine(clienteBuscado.Conta.Saldo);
+            //Console.ReadKey();
 
             Console.Write("\nInforme o valor que irá depositar R$ ");
             double valor = double.Parse(Console.ReadLine());
@@ -505,9 +504,9 @@ namespace SistemaBancoMorangao
         {
             Console.WriteLine("\n\n$$$-SACAR-$$$");
 
-            Console.Write("Saldo atual: ");
-            Console.WriteLine(clienteBuscado.Conta.Saldo);
-            Console.ReadKey();
+            //Console.Write("Saldo atual: ");
+            //Console.WriteLine(clienteBuscado.Conta.Saldo);
+            //Console.ReadKey();
 
             Console.Write("\nInforme o valor que irá sacar R$ ");
             double valor = double.Parse(Console.ReadLine());
@@ -517,6 +516,15 @@ namespace SistemaBancoMorangao
             Console.Write("Novo saldo: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);
 
+            Console.ReadKey();
+        }
+
+        static void RealizarConsultaSaldo(Cliente clienteBuscado)
+        {
+            Console.WriteLine("\n\n$$$-SALDO-$$$");
+
+            Console.Write("Saldo atual: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo);
             Console.ReadKey();
         }
 
