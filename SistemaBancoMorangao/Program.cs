@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace SistemaBancoMorangao
 {
     internal class Program
     {
-        static List<Cliente> lstClientesPendentes;
-        static List<Cliente> lstClientesAprovados;
-        static List<Funcionario> lstFuncionarios;
-
-        static List<int> lstNumeroContas;
-        static List<int> lstIdFuncionarios;
+        static Agencia agencia = new Agencia();
 
         static void Main(string[] args)
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
-            lstClientesPendentes = new List<Cliente>();
-            lstClientesAprovados = new List<Cliente>();
-            lstFuncionarios = new List<Funcionario>();
 
-            lstNumeroContas = new List<int>();
-            lstIdFuncionarios = new List<int>();
+            agencia.lstIdFuncionarios = new List<int>();
 
             MostrarMenuInicial();
         }
@@ -30,7 +20,7 @@ namespace SistemaBancoMorangao
         {
             int id = 0;
 
-            foreach (int idExistente in lstIdFuncionarios)
+            foreach (int idExistente in agencia.lstIdFuncionarios)
             {
                 if (idExistente > id)
                 {
@@ -38,7 +28,7 @@ namespace SistemaBancoMorangao
                 }
             }
             int idRetorno = id + 1;
-            lstIdFuncionarios.Add(idRetorno);
+            agencia.lstIdFuncionarios.Add(idRetorno);
             return idRetorno;
         }
 
@@ -46,7 +36,7 @@ namespace SistemaBancoMorangao
         {
             int numeroConta = 0;
 
-            foreach (int numeroExistente in lstNumeroContas)
+            foreach (int numeroExistente in agencia.lstNumeroContas)
             {
                 if (numeroExistente > numeroConta)
                 {
@@ -54,7 +44,7 @@ namespace SistemaBancoMorangao
                 }
             }
             int numeroRetorno = numeroConta + 1;
-            lstNumeroContas.Add(numeroRetorno);
+            agencia.lstNumeroContas.Add(numeroRetorno);
 
             return numeroRetorno;
         }
@@ -137,7 +127,7 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            foreach (Cliente cliente in lstClientesAprovados)
+                            foreach (Cliente cliente in agencia.lstClientesAprovados)
                             {
                                 if (cliente != null)
                                 {
@@ -201,7 +191,7 @@ namespace SistemaBancoMorangao
                             break;
                         case "1":
                             Console.Clear();
-                            foreach (Funcionario funcionario in lstFuncionarios)
+                            foreach (Funcionario funcionario in agencia.lstFuncionarios)
                             {
                                 if (funcionario != null)
                                 {
@@ -236,6 +226,7 @@ namespace SistemaBancoMorangao
                 Console.WriteLine("         TIPOS DE APROVAÇÕES");
                 Console.WriteLine("(1 - Abertura de Conta | 2 - Emprétimo)");
                 Console.WriteLine("=======================================");
+                Console.WriteLine("*emprestimo nao esta funcionando");
 
                 Console.Write("\nEscolha o Tipo deAprovação ou tecle (3) para voltar ao MENU INICIAL: ");
                 opcao = Console.ReadLine();
@@ -273,9 +264,9 @@ namespace SistemaBancoMorangao
             Console.WriteLine("LISTA DE CONTAS A SEREM APROVADAS!");
             Console.WriteLine("----------------------------------");
 
-            for (int i = 0; i < lstClientesPendentes.Count; i++)
+            for (int i = 0; i < agencia.lstClientesPendentes.Count; i++)
             {
-                Cliente cliente = lstClientesPendentes[i];
+                Cliente cliente = agencia.lstClientesPendentes[i];
 
                 Console.WriteLine("\n" + cliente + "\n");
 
@@ -288,8 +279,8 @@ namespace SistemaBancoMorangao
                     cliente.AtualizaStatus();
                     Console.WriteLine("APROVADO.");
 
-                    lstClientesAprovados.Add(cliente);
-                    lstClientesPendentes.Remove(cliente);
+                    agencia.lstClientesAprovados.Add(cliente);
+                    agencia.lstClientesPendentes.Remove(cliente);
 
                     i -= 1;
                 }
@@ -298,7 +289,7 @@ namespace SistemaBancoMorangao
                 {
                     Console.WriteLine("NÃO APROVADO.");
 
-                    lstClientesPendentes.Remove(cliente);
+                    agencia.lstClientesPendentes.Remove(cliente);
                 }
             }
             Console.WriteLine("Nao ha mais clientes. aperte qualquer coisa para voltar");
@@ -390,7 +381,7 @@ namespace SistemaBancoMorangao
 
         static Cliente BuscarCliente(string numeroInformado, int agenciaInformada, string senhaInformada)
         {
-            foreach (Cliente cliente in lstClientesAprovados)
+            foreach (Cliente cliente in agencia.lstClientesAprovados)
             {
                 if ((cliente != null) && (cliente.Conta.NumConta == numeroInformado) && (cliente.Conta.agencia == agenciaInformada) && (cliente.Conta.Senha == senhaInformada))
                 {
@@ -414,7 +405,7 @@ namespace SistemaBancoMorangao
                 Console.WriteLine("\t$$                                                   $$");
                 Console.WriteLine("\t$$    opção 1 : depositar                            $$");
                 Console.WriteLine("\t$$    opção 2 : sacar                                $$");
-                Console.WriteLine("\t$$    opção 3 : transferir                           $$");
+                Console.WriteLine("\t$$    opção 3 : transferir (não operante)            $$");
                 Console.WriteLine("\t$$                                                   $$");
                 Console.WriteLine("\t$$    opção 4 : extrato                              $$");
                 Console.WriteLine("\t$$    opção 5 : saldo                                $$");
@@ -561,7 +552,7 @@ namespace SistemaBancoMorangao
 
         }
 
-        
+
         static void TranferirContaPoupanca(Cliente clienteBuscado)
         {
             string opcao;
@@ -603,7 +594,7 @@ namespace SistemaBancoMorangao
                             }
                             Console.ReadKey();
                             break;
-                            
+
                         case "2":
                             if (clienteBuscado.Conta.contaPoupanca.SacarValor("CP", "Transferencia", valor) == 1)
                             {
@@ -704,7 +695,7 @@ namespace SistemaBancoMorangao
             Cliente cliente = new Cliente(estudante == "S" ? true : false, renda, pessoa);
             cliente.Conta = CadastrarConta(cliente);
 
-            lstClientesPendentes.Add(cliente);
+            agencia.lstClientesPendentes.Add(cliente);
 
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + cliente);
@@ -797,7 +788,7 @@ namespace SistemaBancoMorangao
 
             Funcionario funcionario = new Funcionario(pessoa, RetornaIdFuncionario(), cargo, niveldeAcesso == 1 ? 1 : 2);
 
-            lstFuncionarios.Add(funcionario);
+            agencia.lstFuncionarios.Add(funcionario);
 
             Console.Clear();
             Console.WriteLine("Dados cadastrados:\n" + funcionario);

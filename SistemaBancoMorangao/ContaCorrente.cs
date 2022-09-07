@@ -26,7 +26,7 @@ namespace SistemaBancoMorangao
 
         public ContaCorrente(Cliente cliente, int agencia, string senha, string numConta, double saldo)
         {
-            this.Habilitada = false;
+            Habilitada = false;
             this.cliente = cliente;
             this.agencia = agencia;
             Senha = senha;
