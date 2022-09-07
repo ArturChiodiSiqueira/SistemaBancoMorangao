@@ -595,7 +595,7 @@ namespace SistemaBancoMorangao
                         case "1":
                             if (clienteBuscado.Conta.SacarValor("CC", "Add Poupanca", valor) == 1)
                             {
-                                clienteBuscado.Conta.contaPoupanca.DepositarValor("CP", "Transferencia", valor);
+                                clienteBuscado.Conta.contaPoupanca.DepCp(valor);
                             }
                             else
                             {
@@ -607,7 +607,8 @@ namespace SistemaBancoMorangao
                         case "2":
                             if (clienteBuscado.Conta.contaPoupanca.SacarValor("CP", "Transferencia", valor) == 1)
                             {
-                                clienteBuscado.Conta.DepositarValor("CC", "Transferencia", valor);
+                                clienteBuscado.Conta.contaPoupanca.SaqCp(valor);
+                                //clienteBuscado.Conta.DepositarValor("CC", "Transferencia", valor);
                             }
                             else
                             {
