@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SistemaBancoMorangao
 {
@@ -466,7 +465,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá depositar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.DepositarValor("CC", "DEPOSITO", valor);
+            clienteBuscado.Conta.MovimentarSaida("CC", "DEPOSITO", valor);
 
             Console.Write("\nDepósito efetuado");
             Console.ReadKey();
@@ -479,7 +478,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá sacar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "SAQUE", valor);
+            clienteBuscado.Conta.MovimentarEntrada("CC", "SAQUE", valor);
 
             if (valor > clienteBuscado.Conta.Saldo)
             {
@@ -496,7 +495,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor do pagamento R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "PAGAMENTO", valor);
+            clienteBuscado.Conta.MovimentarEntrada("CC", "PAGAMENTO", valor);
 
             if (valor > clienteBuscado.Conta.Saldo)
             {
@@ -582,7 +581,7 @@ namespace SistemaBancoMorangao
                             RealizarTransferencia(clienteBuscado);
                             break;
                         case "1":
-                            if (clienteBuscado.Conta.SacarValor("CC", "Add Poupanca", valor) == 1)
+                            if (clienteBuscado.Conta.MovimentarEntrada("CC", "Add Poupanca", valor) == 1)
                             {
                                 clienteBuscado.Conta.contaPoupanca.DepCp(valor);
                             }
@@ -594,7 +593,7 @@ namespace SistemaBancoMorangao
                             break;
 
                         case "2":
-                            if (clienteBuscado.Conta.contaPoupanca.SacarValor("CP", "Transferencia", valor) == 1)
+                            if (clienteBuscado.Conta.contaPoupanca.MovimentarEntrada("CP", "Transferencia", valor) == 1)
                             {
                                 clienteBuscado.Conta.contaPoupanca.SaqCp(valor);
                                 //clienteBuscado.Conta.DepositarValor("CC", "Transferencia", valor);
@@ -647,7 +646,7 @@ namespace SistemaBancoMorangao
                 Console.Write("Informe o nome completo: ");
                 nome = Console.ReadLine();
             } while (nome.Trim().Length == 0);
-            
+
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();
 

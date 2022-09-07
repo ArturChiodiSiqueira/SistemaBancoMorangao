@@ -43,7 +43,7 @@ namespace SistemaBancoMorangao
             return renda * 0.3;
         }
 
-        public void DepositarValor(string conta, string operacao, double valor)
+        public void MovimentarSaida(string conta, string operacao, double valor)
         {
             if (conta == "CC")
             {
@@ -58,7 +58,7 @@ namespace SistemaBancoMorangao
             }
         }
 
-        public int SacarValor(string conta, string operacao, double valor)
+        public int MovimentarEntrada(string conta, string operacao, double valor)
         {
             if (conta == "CC")
                 if (valor > Saldo + Limite)
