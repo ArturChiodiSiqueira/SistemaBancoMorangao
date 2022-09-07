@@ -90,7 +90,7 @@
 
         public override string ToString()
         {
-            return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta.NumConta;
+            return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta.NumConta + "\nTipo da Conta: " + Tipo;
         }
     }
 }

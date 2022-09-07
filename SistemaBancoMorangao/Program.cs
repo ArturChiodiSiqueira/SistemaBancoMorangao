@@ -410,7 +410,7 @@ namespace SistemaBancoMorangao
             string opcao;
 
             do
-            {
+            {                                  //limite!!    tipos de conta!! 
                 Console.Clear();
                 Console.WriteLine("\tBEM VINDO " + clienteBuscado.Pessoa.Nome + "! Este é seu menu de operações financeiras!!\n");
                 Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES FINANCEIRAS  $$$$$$$$$$$$$$$");
@@ -461,7 +461,7 @@ namespace SistemaBancoMorangao
 
                         case "4":
                             Console.Clear();
-                            //ConsultarExtrato();
+                            ConsultarExtrato(clienteBuscado);
                             break;
 
                         case "5":
@@ -492,7 +492,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá depositar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.DepositarValor("CC", "deposito", valor);
+            clienteBuscado.Conta.DepositarValor("CC", "DEPOSITO", valor);
 
             Console.Write("Novo saldo: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);
@@ -510,12 +510,23 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá sacar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "saque", valor);
+            clienteBuscado.Conta.SacarValor("CC", "SAQUE", valor);
 
             Console.Write("Novo saldo: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);
 
             Console.ReadKey();
+        }
+
+        static void ConsultarExtrato(Cliente clienteBuscado)
+        {
+            Console.WriteLine("Dados do cliente: ");
+            Console.WriteLine("Nome: " + clienteBuscado.Pessoa.Nome + "\t" +
+            "Agência: " + clienteBuscado.Conta.agencia + "\t" +
+            "Numero da conta: " + clienteBuscado.Conta.NumConta);
+            Console.WriteLine("__________________________________________________________");
+            clienteBuscado.Conta.ImprimeExtrato();
+            RealizarConsultaSaldo(clienteBuscado);
         }
 
         static void RealizarConsultaSaldo(Cliente clienteBuscado)
@@ -524,6 +535,9 @@ namespace SistemaBancoMorangao
 
             Console.Write("Saldo atual: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.Write("Saldo atual + Limite: ");
+            Console.WriteLine(clienteBuscado.Conta.Saldo + clienteBuscado.Conta.Limite);
+
             Console.ReadKey();
         }
 
@@ -538,7 +552,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor do pagamento R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "pagamento", valor);
+            clienteBuscado.Conta.SacarValor("CC", "PAGAMENTO", valor);
 
             Console.Write("Novo saldo: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo);

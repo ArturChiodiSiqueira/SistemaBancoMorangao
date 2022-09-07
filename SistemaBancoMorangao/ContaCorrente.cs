@@ -37,7 +37,6 @@ namespace SistemaBancoMorangao
             TipoConta = cliente._tipo;
         }
 
-
         static double CalcularLimite(double renda)
         {
             return renda * 0.3;
@@ -47,12 +46,24 @@ namespace SistemaBancoMorangao
         {
             if (conta == "CC")
                 Saldo += valor;
+            Extrato.Add($"CC\t{operacao}\t+ {valor}");
         }
 
         public void SacarValor(string conta, string operacao, double valor)
         {
             if (conta == "CC")
                 Saldo -= valor;
+            Extrato.Add($"CC\t{operacao}\t- {valor}");
+        }
+
+        public void ImprimeExtrato()
+        {
+            foreach (var item in Extrato)
+            {
+                Console.WriteLine(item + "\n");
+            }
+            Console.WriteLine("FIM DA IMPRESSÃO.");
+            Console.WriteLine("-----------------");
         }
     }
 }
