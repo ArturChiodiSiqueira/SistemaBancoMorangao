@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SistemaBancoMorangao
 {
@@ -10,8 +9,6 @@ namespace SistemaBancoMorangao
         static void Main(string[] args)
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
-
-            agencia.lstIdFuncionarios = new List<int>();
 
             MostrarMenuInicial();
         }
@@ -468,7 +465,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá depositar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.DepositarValor("CC", "DEPOSITO", valor);
+            clienteBuscado.Conta.MovimentarSaida("CC", "DEPOSITO", valor);
 
             Console.Write("\nDepósito efetuado");
             Console.ReadKey();
@@ -481,7 +478,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor que irá sacar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "SAQUE", valor);
+            clienteBuscado.Conta.MovimentarEntrada("CC", "SAQUE", valor);
 
             if (valor > clienteBuscado.Conta.Saldo)
             {
@@ -498,7 +495,7 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme o valor do pagamento R$ ");
             double valor = double.Parse(Console.ReadLine());
 
-            clienteBuscado.Conta.SacarValor("CC", "PAGAMENTO", valor);
+            clienteBuscado.Conta.MovimentarEntrada("CC", "PAGAMENTO", valor);
 
             if (valor > clienteBuscado.Conta.Saldo)
             {
@@ -584,7 +581,7 @@ namespace SistemaBancoMorangao
                             RealizarTransferencia(clienteBuscado);
                             break;
                         case "1":
-                            if (clienteBuscado.Conta.SacarValor("CC", "Add Poupanca", valor) == 1)
+                            if (clienteBuscado.Conta.MovimentarEntrada("CC", "Add Poupanca", valor) == 1)
                             {
                                 clienteBuscado.Conta.contaPoupanca.DepCp(valor);
                             }
@@ -596,7 +593,7 @@ namespace SistemaBancoMorangao
                             break;
 
                         case "2":
-                            if (clienteBuscado.Conta.contaPoupanca.SacarValor("CP", "Transferencia", valor) == 1)
+                            if (clienteBuscado.Conta.contaPoupanca.MovimentarEntrada("CP", "Transferencia", valor) == 1)
                             {
                                 clienteBuscado.Conta.contaPoupanca.SaqCp(valor);
                                 //clienteBuscado.Conta.DepositarValor("CC", "Transferencia", valor);
@@ -643,12 +640,13 @@ namespace SistemaBancoMorangao
             Console.WriteLine("\nAperte qualquer tecla para executar a solicitação!");
             Console.ReadKey();
 
-            Console.Write("Informe o nome completo: ");
-            string nome = Console.ReadLine().Trim();
-            //if (nome == "")
-            //{
+            string nome = Console.ReadLine();
+            do
+            {
+                Console.Write("Informe o nome completo: ");
+                nome = Console.ReadLine();
+            } while (nome.Trim().Length == 0);
 
-            //}
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();
 
@@ -710,8 +708,12 @@ namespace SistemaBancoMorangao
 
         static ContaCorrente CadastrarConta(Cliente cliente)
         {
-            Console.Write("\nInforme a SENHA: ");
-            string senha = Console.ReadLine();
+            string senha;
+            do
+            {
+                Console.Write("\nInforme a SENHA: ");
+                senha = Console.ReadLine();
+            } while (senha.Trim().Length == 0);
 
             int numeroConta = RetornaNumeroConta();
 
@@ -730,8 +732,12 @@ namespace SistemaBancoMorangao
             Console.WriteLine("\nAperte qualquer tecla para cadastrar!");
             Console.ReadKey();
 
-            Console.Write("Informe o nome completo: ");
             string nome = Console.ReadLine();
+            do
+            {
+                Console.Write("Informe o nome completo: ");
+                nome = Console.ReadLine();
+            } while (nome.Trim().Length == 0);
 
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();
