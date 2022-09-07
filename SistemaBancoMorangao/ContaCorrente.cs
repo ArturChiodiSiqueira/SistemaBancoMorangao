@@ -74,17 +74,17 @@ namespace SistemaBancoMorangao
                 }
             else
             {
-                if (contaPoupanca.Saldo < valor)
-                {
-                    Console.WriteLine("Não foi possivel realizar a operação.\nMotivo: Saldo Insuficiente.");
-                    return 0;
-                }
-                else
-                {
-                    contaPoupanca.Saldo -= valor;
-                    Extrato.Add($"CP\tOperação: {operacao}\t-R${valor}");
-                    return 1;
-                }
+                //if (contaPoupanca.Saldo < valor)
+                //{
+                //    Console.WriteLine("Não foi possivel realizar a operação.\nMotivo: Saldo Insuficiente.");
+                //    return 0;
+                //}
+                //else
+                //{
+                contaPoupanca.Saldo -= valor;
+                Extrato.Add($"CP\tOperação: {operacao}\t-R${valor}");
+                return 1;
+                //}
             }
         }
 
