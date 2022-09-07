@@ -61,7 +61,6 @@ namespace SistemaBancoMorangao
         static void MostrarMenuInicial()
         {
             string opcao;
-
             do
             {
                 Console.Clear();
@@ -103,8 +102,6 @@ namespace SistemaBancoMorangao
         static void MostrarMenuFuncionario()
         {
             string opcao;
-            //string senha = "123";
-
             do
             {
                 Console.Clear();
@@ -169,8 +166,6 @@ namespace SistemaBancoMorangao
         static void AtividadesGerente()
         {
             string opcao;
-            //string senha = "456";
-
             do
             {
                 Console.Clear();
@@ -327,7 +322,6 @@ namespace SistemaBancoMorangao
         static void MostrarMenuCliente()
         {
             string opcao;
-            //string senha = senha cadastrada pelo cliente na hora de criar a conta
 
             do
             {
@@ -410,7 +404,7 @@ namespace SistemaBancoMorangao
             string opcao;
 
             do
-            {                                  //limite!!    tipos de conta!! 
+            {                                  
                 Console.Clear();
                 Console.WriteLine("\tBEM VINDO " + clienteBuscado.Pessoa.Nome + "! Este é seu menu de operações financeiras!!\n");
                 Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES FINANCEIRAS  $$$$$$$$$$$$$$$");
@@ -485,10 +479,6 @@ namespace SistemaBancoMorangao
         {
             Console.WriteLine("\n\n$$$-DEPOSITAR-$$$");
 
-            //Console.Write("Saldo atual: ");
-            //Console.WriteLine(clienteBuscado.Conta.Saldo);
-            //Console.ReadKey();
-
             Console.Write("\nInforme o valor que irá depositar R$ ");
             double valor = double.Parse(Console.ReadLine());
 
@@ -502,10 +492,6 @@ namespace SistemaBancoMorangao
         static void RealizarSaque(Cliente clienteBuscado)
         {
             Console.WriteLine("\n\n$$$-SACAR-$$$");
-
-            //Console.Write("Saldo atual: ");
-            //Console.WriteLine(clienteBuscado.Conta.Saldo);
-            //Console.ReadKey();
 
             Console.Write("\nInforme o valor que irá sacar R$ ");
             double valor = double.Parse(Console.ReadLine());
@@ -544,10 +530,6 @@ namespace SistemaBancoMorangao
         static void RealizarPagamento(Cliente clienteBuscado)
         {
             Console.WriteLine("\n\n$$$-PAGAR-$$$");
-
-            //Console.Write("Saldo atual: ");
-            //Console.WriteLine(clienteBuscado.Conta.Saldo);
-            //Console.ReadKey();
 
             Console.Write("\nInforme o valor do pagamento R$ ");
             double valor = double.Parse(Console.ReadLine());
@@ -633,7 +615,6 @@ namespace SistemaBancoMorangao
             Console.Write("\nInforme a SENHA: ");
             string senha = Console.ReadLine();
 
-            //Console.WriteLine("Numero da conta: ");
             int numeroConta = RetornaNumeroConta();
 
             Console.Write("Informe o numero da AGENCIA: ");
@@ -721,10 +702,5 @@ namespace SistemaBancoMorangao
             Console.ReadKey();
             MostrarMenuInicial();
         }
-
-        //static void ColetaDados()
-        //{
-
-        //}
     }
 }

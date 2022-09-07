@@ -16,17 +16,6 @@
 
     internal class Cliente
     {
-
-        //public Status Status
-        //{
-        //    set
-        //    {
-        //        _status = Status.Aprovado;
-        //    }
-        //}
-
-
-
         internal const double RENDA_MINIMA = 5000;
         internal TipoConta _tipo;
         internal protected double _renda;
