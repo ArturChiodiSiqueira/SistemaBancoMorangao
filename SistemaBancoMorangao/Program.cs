@@ -11,8 +11,6 @@ namespace SistemaBancoMorangao
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
 
-            agencia.lstIdFuncionarios = new List<int>();
-
             MostrarMenuInicial();
         }
 
@@ -643,12 +641,13 @@ namespace SistemaBancoMorangao
             Console.WriteLine("\nAperte qualquer tecla para executar a solicitação!");
             Console.ReadKey();
 
-            Console.Write("Informe o nome completo: ");
-            string nome = Console.ReadLine().Trim();
-            //if (nome == "")
-            //{
-
-            //}
+            string nome = Console.ReadLine();
+            do
+            {
+                Console.Write("Informe o nome completo: ");
+                nome = Console.ReadLine();
+            } while (nome.Trim().Length == 0);
+            
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();
 
@@ -710,8 +709,12 @@ namespace SistemaBancoMorangao
 
         static ContaCorrente CadastrarConta(Cliente cliente)
         {
-            Console.Write("\nInforme a SENHA: ");
-            string senha = Console.ReadLine();
+            string senha;
+            do
+            {
+                Console.Write("\nInforme a SENHA: ");
+                senha = Console.ReadLine();
+            } while (senha.Trim().Length == 0);
 
             int numeroConta = RetornaNumeroConta();
 
@@ -730,8 +733,12 @@ namespace SistemaBancoMorangao
             Console.WriteLine("\nAperte qualquer tecla para cadastrar!");
             Console.ReadKey();
 
-            Console.Write("Informe o nome completo: ");
             string nome = Console.ReadLine();
+            do
+            {
+                Console.Write("Informe o nome completo: ");
+                nome = Console.ReadLine();
+            } while (nome.Trim().Length == 0);
 
             Console.Write("Informe o telefone/celular: ");
             string telefone = Console.ReadLine();

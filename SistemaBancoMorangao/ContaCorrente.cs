@@ -81,7 +81,7 @@ namespace SistemaBancoMorangao
                 //}
                 //else
                 //{
-                contaPoupanca.Saldo -= valor;
+                this.contaPoupanca.Saldo -= valor;
                 Extrato.Add($"CP\tOperação: {operacao}\t-R${valor}");
                 return 1;
                 //}
