@@ -91,7 +91,6 @@
         public override string ToString()
         {
             return Pessoa.ToString() + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta.NumConta;
-            //return pessoa.ToString() + "\nhabilitacao: " + Habilitacao + "\nEstudante: " + Estudante + "\nRenda: " + Renda + "\nConta: " + Conta;
         }
     }
 }

@@ -145,11 +145,9 @@ namespace SistemaBancoMorangao
                                 {
                                     Console.WriteLine(cliente + "\n");
                                 }
-                                else
-                                {
-                                    Console.WriteLine("NÃO HÁ NOVOS CLIENTES CADASTRADOS AINDA.");
-                                }
                             }
+                            Console.WriteLine("FIM DA IMPRESSÃO.");
+                            Console.WriteLine("-----------------");
                             Console.WriteLine("\nAperte qualquer tecla para voltar!");
                             Console.ReadKey();
                             break;
@@ -213,11 +211,9 @@ namespace SistemaBancoMorangao
                                 {
                                     Console.WriteLine(funcionario + "\n");
                                 }
-                                else
-                                {
-                                    Console.WriteLine("NÃO HÁ NOVOS FUNCIONARIOS CADASTRADOS AINDA.");
-                                }
                             }
+                            Console.WriteLine("FIM DA IMPRESSÃO.");
+                            Console.WriteLine("-----------------");
                             Console.WriteLine("\nAperte qualquer tecla para voltar!");
                             Console.ReadKey();
                             break;
@@ -236,7 +232,6 @@ namespace SistemaBancoMorangao
             } while (opcao != "0");
         }
 
-        // fazer uma outra lista para guardar as contas aprovadas, essa ss sera a lista de clientes
         static void VerAprovacoes()
         {
             string opcao;
@@ -244,24 +239,35 @@ namespace SistemaBancoMorangao
             {
                 Console.WriteLine("         TIPOS DE APROVAÇÕES");
                 Console.WriteLine("(1 - Abertura de Conta | 2 - Emprétimo)");
+                Console.WriteLine("=======================================");
+
                 Console.Write("\nEscolha o Tipo deAprovação ou tecle (3) para voltar ao MENU INICIAL: ");
                 opcao = Console.ReadLine();
 
-                switch (opcao)
+                if (opcao != "1" && opcao != "2" && opcao != "3")
                 {
-                    case "1":
-                        AprovarAberturaDeConta();
-                        break;
-
-                    case "2":
-                        AprovarEmprestimo();
-                        break;
-
-                    case "3":
-                        MostrarMenuInicial();
-                        break;
+                    Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Pressione QUALQUER TECLA!");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
-            } while (opcao != "1" && opcao != "2");
+                else
+                {
+                    switch (opcao)
+                    {
+                        case "1":
+                            AprovarAberturaDeConta();
+                            break;
+
+                        case "2":
+                            AprovarEmprestimo();
+                            break;
+
+                        case "3":
+                            MostrarMenuInicial();
+                            break;
+                    }
+                }
+            } while (opcao != "1" && opcao != "2" && opcao != "3");
         }
 
         static void AprovarAberturaDeConta()
@@ -287,7 +293,6 @@ namespace SistemaBancoMorangao
                     Console.WriteLine("APROVADO.");
 
                     lstClientesAprovados.Add(cliente);
-
                     lstClientesPendentes.Remove(cliente);
 
                     i -= 1;
@@ -300,53 +305,9 @@ namespace SistemaBancoMorangao
                     lstClientesPendentes.Remove(cliente);
                 }
             }
-
             Console.WriteLine("Nao ha mais clientes. aperte qualquer coisa para voltar");
             Console.ReadKey();
             MostrarMenuInicial();
-
-            //Console.Write("\n\nInforme o numero da conta do cliente que deseja aprovar: ");
-            //int numeroInformado = int.Parse(Console.ReadLine());
-
-            //string opcao;
-            //Console.WriteLine("deseja aprovar este cliente (1 - sim | 2 - não)");
-            //Console.Write("Escolha a opcao: ");
-            //opcao = Console.ReadLine();
-
-            //if (opcao == "1")
-            //{
-            //    cliente.
-            //}
-
-            //Cliente clientependente = new Cliente();
-
-
-            //switch (opcao)
-            //{
-            //    case "1":
-            //        if (nomeInformado == clientependente.Pessoa.Nome)
-            //        {
-            //            lstClientesAprovados.Add(clientependente);
-            //            lstClientesPendentes.Remove(clientependente);
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("cliente inesistente.");
-            //        }
-            //        break;
-
-            //    case "2":
-            //        if (nomeInformado == clientependente.Pessoa.Nome)
-            //        {
-            //            lstClientesPendentes.Remove(clientependente);
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("cliente inesistente.");
-            //        }
-            //        break;
-            //}
-
 
             Console.WriteLine("\nAperte qualquer tecla para voltar!");
 
@@ -414,12 +375,12 @@ namespace SistemaBancoMorangao
 
                             if (clienteBuscado != null)
                             {
-                                //Console.WriteLine(clienteBuscado);
-                                //Console.ReadKey();
                                 AtividadesCliente(clienteBuscado);
                             }
                             else
-                                Console.WriteLine("Alguma das informações é inválida!");
+                            {
+                                Console.WriteLine("\nInformação inválida registrada!");
+                            }
                             Console.ReadKey();
                             break;
 
@@ -432,11 +393,11 @@ namespace SistemaBancoMorangao
             } while (opcao != "0");
         }
 
-        static Cliente BuscarCliente (string numeroInformado, int agenciaInformada, string senhaInformada)
+        static Cliente BuscarCliente(string numeroInformado, int agenciaInformada, string senhaInformada)
         {
             foreach (Cliente cliente in lstClientesAprovados)
             {
-                if ((cliente != null) && (cliente.Conta.NumConta == numeroInformado) && (cliente.Conta.agencia == agenciaInformada) && (cliente.Conta.Senha == senhaInformada)) 
+                if ((cliente != null) && (cliente.Conta.NumConta == numeroInformado) && (cliente.Conta.agencia == agenciaInformada) && (cliente.Conta.Senha == senhaInformada))
                 {
                     return cliente;
                 }
@@ -659,11 +620,19 @@ namespace SistemaBancoMorangao
             Console.Write("Informe o Email: ");
             string email = Console.ReadLine();
 
-            Console.Write("Informe o CPF: ");
-            string cpf = Console.ReadLine();
+            string cpf;
+            do
+            {
+                Console.Write("Informe o CPF (11 digitos): ");
+                cpf = Console.ReadLine();
+            } while (cpf.Length != 11);
 
-            Console.Write("Informe o genero (M ou F): ");
-            char genero = char.Parse(Console.ReadLine().ToUpper());
+            char genero;
+            do
+            {
+                Console.Write("Informe o genero (M ou F): ");
+                genero = char.Parse(Console.ReadLine().ToUpper());
+            } while (genero != 'M' && genero != 'F');
 
             Pessoa pessoa = new Pessoa(nome, telefone, email, cpf, genero);
 
@@ -689,8 +658,12 @@ namespace SistemaBancoMorangao
 
             string cargo;
 
-            Console.Write("Informe o nivel de acesso do funcionário (1 - funcionario | 2 - gerente): ");
-            int niveldeAcesso = int.Parse(Console.ReadLine());
+            int niveldeAcesso;
+            do
+            {
+                Console.Write("Informe o nivel de acesso do funcionário (1 - funcionario | 2 - gerente): ");
+                niveldeAcesso = int.Parse(Console.ReadLine());
+            } while (niveldeAcesso != 1 && niveldeAcesso != 2);
 
             if (niveldeAcesso == 1)
                 cargo = "FUNCIONARIO";
