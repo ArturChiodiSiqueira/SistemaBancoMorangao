@@ -2,7 +2,7 @@
 {
     internal class ContaPoupanca : ContaCorrente
     {
-        public double Saldo { get; set; }
+        public double Saldo;
 
         public ContaPoupanca() : base()
         {
@@ -11,7 +11,7 @@
 
         public override string ToString()
         {
-            return "\n>>>POUPANÇA<<<\nSaldo: " + Saldo.ToString("F").ToString();
+            return "\n>>>POUPANÇA<<<\nSaldo: " + Saldo.ToString("F2").ToString();
         }
     }
 }

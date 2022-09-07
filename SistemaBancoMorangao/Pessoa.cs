@@ -27,7 +27,7 @@ namespace SistemaBancoMorangao
 
         public override string ToString()
         {
-            return "Nome: " + Nome + "\nTelefone: " + Telefone + "\nEmail: " + Email + "\nCpf: " + Cpf + "\nGenero: " + Genero + "\nEndereço: " + Endereco.ToString();
+            return "Nome: " + Nome + "\nTelefone: " + Telefone + "\nEmail: " + Email + "\nCpf: " + Cpf + "\nGenero: " + Genero + Endereco.ToString();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SistemaBancoMorangao
 {
@@ -404,7 +405,7 @@ namespace SistemaBancoMorangao
             string opcao;
 
             do
-            {                                  
+            {
                 Console.Clear();
                 Console.WriteLine("\tBEM VINDO " + clienteBuscado.Pessoa.Nome + "! Este é seu menu de operações financeiras!!\n");
                 Console.WriteLine("\t$$$$$$$$$$$$$$$  OPERAÇÕES FINANCEIRAS  $$$$$$$$$$$$$$$");
@@ -419,7 +420,6 @@ namespace SistemaBancoMorangao
                 Console.WriteLine("\t$$    opção 5 : saldo                                $$");
                 Console.WriteLine("\t$$                                                   $$");
                 Console.WriteLine("\t$$    opção 6 : realizar pagamento                   $$");
-                Console.WriteLine("\t$$    opção 7 : solicitar emprestimo                 $$");
                 Console.WriteLine("\t$$                                                   $$");
                 Console.WriteLine("\t$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
@@ -450,7 +450,7 @@ namespace SistemaBancoMorangao
 
                         case "3":
                             Console.Clear();
-                            //Transferir();
+                            RealizarTransferencia(clienteBuscado);
                             break;
 
                         case "4":
@@ -464,11 +464,6 @@ namespace SistemaBancoMorangao
 
                         case "6":
                             RealizarPagamento(clienteBuscado);
-                            break;
-
-                        case "7":
-                            Console.Clear();
-                            //SolicitarEmprestimo();
                             break;
                     }
                 }
@@ -484,8 +479,7 @@ namespace SistemaBancoMorangao
 
             clienteBuscado.Conta.DepositarValor("CC", "DEPOSITO", valor);
 
-            Console.Write("Novo saldo: ");
-            Console.WriteLine(clienteBuscado.Conta.Saldo);
+            Console.Write("\nDepósito efetuado");
             Console.ReadKey();
         }
 
@@ -498,10 +492,134 @@ namespace SistemaBancoMorangao
 
             clienteBuscado.Conta.SacarValor("CC", "SAQUE", valor);
 
-            Console.Write("Novo saldo: ");
-            Console.WriteLine(clienteBuscado.Conta.Saldo);
-
+            if (valor > clienteBuscado.Conta.Saldo)
+            {
+                Console.WriteLine("\nSaque efetuado");
+                Console.WriteLine("Limite consumido");
+            }
             Console.ReadKey();
+        }
+
+        static void RealizarPagamento(Cliente clienteBuscado)
+        {
+            Console.WriteLine("\n\n$$$-PAGAR-$$$");
+
+            Console.Write("\nInforme o valor do pagamento R$ ");
+            double valor = double.Parse(Console.ReadLine());
+
+            clienteBuscado.Conta.SacarValor("CC", "PAGAMENTO", valor);
+
+            if (valor > clienteBuscado.Conta.Saldo)
+            {
+                Console.WriteLine("\nPagamento efetuado");
+                Console.WriteLine("Limite consumido");
+            }
+            Console.ReadKey();
+        }
+
+        static void RealizarTransferencia(Cliente clienteBuscado)
+        {
+            string opcao;
+            do
+            {
+                Console.WriteLine("        TIPOS DE TRANSFERÊNCIA");
+                Console.WriteLine("(1 - Para Poupança | 2 - Outra Conta  )");
+                Console.WriteLine("0 - sair");
+                Console.WriteLine("=======================================");
+
+                Console.Write("\nInforme a opcao: ");
+                opcao = Console.ReadLine();
+
+                if (opcao != "0" && opcao != "1" && opcao != "2")
+                {
+                    Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Para voltar ao MENU, pressione QUALQUER TECLA!");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    switch (opcao)
+                    {
+                        case "0":
+                            MostrarMenuCliente();
+                            break;
+
+                        case "1":
+                            TranferirContaPoupanca(clienteBuscado);
+                            break;
+
+                        case "2":
+                            TranferirOutraConta(clienteBuscado);
+                            break;
+                    }
+                }
+            } while (opcao != "0");
+        }
+
+        static void TranferirOutraConta(Cliente clienteBuscado)
+        {
+
+        }
+
+        
+        static void TranferirContaPoupanca(Cliente clienteBuscado)
+        {
+            string opcao;
+            do
+            {
+
+                Console.WriteLine("        O que deseja fazer");
+                Console.WriteLine("(1 - Adicionar | 2 - Remover          )");
+                Console.WriteLine("0 - voltar");
+                Console.WriteLine("=======================================");
+
+                Console.Write("\nInforme a opcao: ");
+                opcao = Console.ReadLine();
+
+                if (opcao != "0" && opcao != "1" && opcao != "2")
+                {
+                    Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Para voltar ao MENU, pressione QUALQUER TECLA!");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Informr o valor: ");
+                    double valor = double.Parse(Console.ReadLine());
+
+                    switch (opcao)
+                    {
+                        case "0":
+                            RealizarTransferencia(clienteBuscado);
+                            break;
+                        case "1":
+                            if (clienteBuscado.Conta.SacarValor("CC", "Add Poupanca", valor) == 1)
+                            {
+                                clienteBuscado.Conta.contaPoupanca.DepositarValor("CP", "Transferencia", valor);
+                            }
+                            else
+                            {
+                                Console.WriteLine("solicitação invalida");
+                            }
+                            Console.ReadKey();
+                            break;
+                            
+                        case "2":
+                            if (clienteBuscado.Conta.contaPoupanca.SacarValor("CP", "Transferencia", valor) == 1)
+                            {
+                                clienteBuscado.Conta.DepositarValor("CC", "Transferencia", valor);
+                            }
+                            else
+                            {
+                                Console.WriteLine("solicitação invalida");
+                            }
+                            Console.ReadKey();
+
+                            Console.WriteLine("Saldo Poupança: " + clienteBuscado.Conta.contaPoupanca.Saldo);
+                            break;
+                    }
+                }
+            } while (opcao != "0");
         }
 
         static void ConsultarExtrato(Cliente clienteBuscado)
@@ -523,21 +641,6 @@ namespace SistemaBancoMorangao
             Console.WriteLine(clienteBuscado.Conta.Saldo);
             Console.Write("Saldo atual + Limite: ");
             Console.WriteLine(clienteBuscado.Conta.Saldo + clienteBuscado.Conta.Limite);
-
-            Console.ReadKey();
-        }
-
-        static void RealizarPagamento(Cliente clienteBuscado)
-        {
-            Console.WriteLine("\n\n$$$-PAGAR-$$$");
-
-            Console.Write("\nInforme o valor do pagamento R$ ");
-            double valor = double.Parse(Console.ReadLine());
-
-            clienteBuscado.Conta.SacarValor("CC", "PAGAMENTO", valor);
-
-            Console.Write("Novo saldo: ");
-            Console.WriteLine(clienteBuscado.Conta.Saldo);
 
             Console.ReadKey();
         }

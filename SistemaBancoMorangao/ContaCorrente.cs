@@ -16,7 +16,7 @@ namespace SistemaBancoMorangao
         public double Limite { get; set; }
         public Cartao Cartao { get; set; }
         public TipoConta TipoConta { get; set; }
-        public ContaPoupanca ContaPoupanca { get; set; }
+        public ContaPoupanca contaPoupanca { get; set; }
 
 
         public ContaCorrente()
@@ -35,6 +35,7 @@ namespace SistemaBancoMorangao
             Limite = CalcularLimite(cliente._renda);
             Cartao = new Cartao(senha, Limite, saldo, numConta);
             TipoConta = cliente._tipo;
+            contaPoupanca = new ContaPoupanca();
         }
 
         static double CalcularLimite(double renda)
@@ -45,15 +46,46 @@ namespace SistemaBancoMorangao
         public void DepositarValor(string conta, string operacao, double valor)
         {
             if (conta == "CC")
+            {
+
                 Saldo += valor;
-            Extrato.Add($"CC\t{operacao}\t+ {valor}");
+                Extrato.Add($"CC\t{operacao}\t+R${valor}");
+            }
+            else
+            {
+                contaPoupanca.Saldo += valor;
+                Extrato.Add($"CP\t{operacao}\t+R${valor}");
+            }
         }
 
-        public void SacarValor(string conta, string operacao, double valor)
+        public int SacarValor(string conta, string operacao, double valor)
         {
             if (conta == "CC")
-                Saldo -= valor;
-            Extrato.Add($"CC\t{operacao}\t- {valor}");
+                if (valor > Saldo + Limite)
+                {
+                    Console.WriteLine("Não foi possivel realizar a operação.\nMotivo: Saldo Insuficiente.");
+                    return 0;
+                }
+                else
+                {
+                    Saldo -= valor;
+                    Extrato.Add($"CC\t{operacao}\t-R${valor}");
+                    return 1;
+                }
+            else
+            {
+                if (contaPoupanca.Saldo < valor)
+                {
+                    Console.WriteLine("Não foi possivel realizar a operação.\nMotivo: Saldo Insuficiente.");
+                    return 0;
+                }
+                else
+                {
+                    contaPoupanca.Saldo -= valor;
+                    Extrato.Add($"CP\tOperação: {operacao}\t-R${valor}");
+                    return 1;
+                }
+            }
         }
 
         public void ImprimeExtrato()
