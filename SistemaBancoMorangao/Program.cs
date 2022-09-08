@@ -9,7 +9,6 @@ namespace SistemaBancoMorangao
         static void Main(string[] args)
         {
             Console.Title = "SISTEMA BANCO MORANGÃO";
-            //Projeto funcionando
             MostrarMenuInicial();
         }
 
@@ -57,12 +56,14 @@ namespace SistemaBancoMorangao
                 Console.WriteLine("\t|   opção 0 : funcionario                   |");
                 Console.WriteLine("\t|                                           |");
                 Console.WriteLine("\t|   opção 1 : cliente                       |");
+                Console.WriteLine("\t|                                           |");
+                Console.WriteLine("\t|   opção 2 : sair                          |");
                 Console.WriteLine("\t|___________________________________________|");
 
                 Console.Write("\n\tInforme a opcao: ");
                 opcao = Console.ReadLine();
 
-                if (opcao != "0" && opcao != "1")
+                if (opcao != "0" && opcao != "1" && opcao != "2")
                 {
                     Console.WriteLine("'" + opcao + "' é uma opcao INVALIDA! Para voltar ao MENU, pressione QUALQUER TECLA!");
                     Console.ReadKey();
@@ -82,9 +83,13 @@ namespace SistemaBancoMorangao
                             Console.Clear();
                             MostrarMenuCliente();
                             break;
+
+                        case "2":
+                            Environment.Exit(2);
+                            break;
                     }
                 }
-            } while (opcao != "0" && opcao != "1");
+            } while (true);
         }
 
         static void MostrarMenuFuncionario()
@@ -339,7 +344,7 @@ namespace SistemaBancoMorangao
                     switch (opcao)
                     {
                         case "0":
-                            Console.WriteLine("\nVOCÊ ESCOLHEU SAIR.");
+                            Environment.Exit(0);
                             break;
                         case "1":
                             Console.Clear();
@@ -373,7 +378,7 @@ namespace SistemaBancoMorangao
                             break;
                     }
                 }
-            } while (opcao != "0");
+            } while (true);
         }
 
         static Cliente BuscarCliente(string numeroInformado, int agenciaInformada, string senhaInformada)
